@@ -3,13 +3,15 @@ import MainNavigation from "./components/layout/MainNavigation";
 
 import AskForLeavePage from "./components/pages/AskForLeave";
 import CallInSickPage from "./components/pages/CallInSick";
-import SetWorkPlacePage from "./components/pages/SetWorkplace";
 import TeamPlannerPage from "./components/pages/TeamPlanner";
 import UserPlannerPage from "./components/pages/UserPlanner";
+import Legend from "./components/layout/Legend";
+
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Routes>
         <Route path="/ask-for-leave" element={<AskForLeavePage />} />
         <Route path="/call-in-sick" element={<CallInSickPage />} />

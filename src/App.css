@@ -1,0 +1,23 @@
+:root {
+  /* COLORS */
+  --white: #F7F6F6;
+  --gray: #D9D9D9;
+  --light-blue: #8ED1FC;
+  --blue: #5793DB;
+  --orange: #F8921E;
+  --black: #181515;
+    /* EMPLOYEE STATUS COLORS */
+    --clrOffice: #ADC669;
+    --clrHome: #8AC1E9;
+    --clrCustomer: #CC90CD;
+    --clrSick: #E27C7C;
+    --clrLeave: #F0E580;
+
+  /* FONTS */
+  --medium-font-size: 19px;
+  --font: Arial, Helvetica, sans-serif;
+}
+
+.App {
+  font-family: var(--font);
+}
