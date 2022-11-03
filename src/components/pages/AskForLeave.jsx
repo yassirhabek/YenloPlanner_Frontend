@@ -1,5 +1,5 @@
 function AskForLeavePage() {
-  return <div>Ask For Leave Page</div>;
+  return <h1>Ask For Leave Page</h1>;
 }
 
 export default AskForLeavePage;

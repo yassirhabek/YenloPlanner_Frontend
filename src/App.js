@@ -3,7 +3,7 @@ import MainNavigation from "./components/layout/MainNavigation";
 
 import AskForLeavePage from "./components/pages/AskForLeave";
 import CallInSickPage from "./components/pages/CallInSick";
-import SetWorkPlacePage from "./components/pages/SetWorkplace";
+// import SetWorkPlacePage from "./components/pages/SetWorkplace";
 import TeamPlannerPage from "./components/pages/TeamPlanner";
 import UserPlannerPage from "./components/pages/UserPlanner";
 
