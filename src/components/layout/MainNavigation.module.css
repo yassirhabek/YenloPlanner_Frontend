@@ -1,0 +1,41 @@
+.navbackground{
+    position: absolute;
+    width: 119px;
+    height: 905px;
+    left: 0px;
+    top: 119px;
+    
+    background-color: #F7F6F6;
+}
+
+.calender{
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    left: 21px;
+    top: 143px;    
+}
+
+.team{
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 27px;
+    top: 243px;    
+}
+
+.sick{
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 27px;
+    top: 337px;
+}
+
+.leave{
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 27px;
+    top: 430px;
+}
