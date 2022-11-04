@@ -8,6 +8,7 @@
   margin-right: auto;
   width: 50%;
   background: #ffffff;
+  border-bottom: 2px solid #5793DB;
 }
 
 .search input {
