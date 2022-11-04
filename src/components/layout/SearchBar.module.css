@@ -57,6 +57,11 @@ input:focus {
 
 .dataItem p {
   margin-left: 10px;
+  margin-top: 15px;
+}
+
+.dataResult a {
+  text-decoration: none;
 }
 
 a:hover {

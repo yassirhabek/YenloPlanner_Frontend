@@ -1,5 +1,7 @@
 import classes from "./TitleBar.module.css";
 import SearchBar from "./SearchBar";
+import YenloLogo from "../../assets/YenloLogo.PNG";
+import Uitloggen from "../../assets/Uitloggen.PNG";
 
 function TitleBar() {
     function logOutHandler(){
@@ -10,9 +12,9 @@ function TitleBar() {
 
   return (
     <header className={classes.header}>
-      <img src="/YenloLogo.PNG" width="200" height="80" alt="Yenlo Logo" />
+      <img src={YenloLogo} width="200" height="75" alt="Yenlo Logo" />
       <SearchBar placeholder="Search Employee..." data={Data} />
-      <img src="/Uitloggen.PNG" width="50" height="50" alt="Uitloggen" onClick={logOutHandler}/>
+      <img src={Uitloggen} width="50" height="50" alt="Uitloggen" onClick={logOutHandler}/>
     </header>
   );
 }

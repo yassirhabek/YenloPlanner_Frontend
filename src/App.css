@@ -21,3 +21,7 @@
 .App {
   font-family: var(--font);
 }
+
+.Left{
+  margin-left: 10%;
+}

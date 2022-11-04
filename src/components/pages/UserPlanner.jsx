@@ -1,5 +1,7 @@
+import Legend from "../layout/Legend";
+
 function UserPlannerPage() {
-  return <div>User Planner Page</div>;
+  return <div><Legend /></div>;
 }
 
 export default UserPlannerPage;
