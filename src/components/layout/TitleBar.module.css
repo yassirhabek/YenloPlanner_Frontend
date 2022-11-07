@@ -3,6 +3,28 @@
   height: 75px;
   display: flex;
   align-items: center;
-  background-color: #F7F6F6;
+  background-color: #f7f6f6;
   padding: 1%;
+}
+
+.logo {
+  position: absolute;
+  width: 200px;
+  height: 75px;
+  left: 19px;
+}
+
+.logout {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 10px;
+}
+
+.search {
+  position: absolute;
+  width: 721px;
+  height: 76px;
+  left: 359px;
+  top: 21px;
 }

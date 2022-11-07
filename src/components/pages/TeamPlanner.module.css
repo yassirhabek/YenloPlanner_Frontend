@@ -1,0 +1,37 @@
+.week {
+  position: absolute;
+  width: 100%;
+  height: 27px;
+  top: 118px;
+}
+
+.week .arrowl {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  left: 342px;
+}
+
+.week .arrowr {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  left: 583px;
+}
+
+.week p {
+  position: absolute;
+  height: 35px;
+  left: 420px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #181515;
+}
