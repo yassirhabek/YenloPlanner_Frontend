@@ -2,7 +2,7 @@ import React from "react";
 import './Legend.css';
 
 function Legend() {
-    return (<div className="Align">
+    return (<div>
         <h1>Legend</h1>
         <div className="LegendBody">
         <ul>

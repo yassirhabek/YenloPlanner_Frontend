@@ -1,0 +1,18 @@
+.Schedule {
+    background-color: var(--white);
+    width: 600px;
+    height: 745px;
+}
+
+.row {
+    margin-top: 3px;
+    margin-left: 0px;
+}
+
+.col-md-3 {
+    margin-right: -35px;
+}
+
+.ScheduleHeader {
+    width: 600px !important;
+}

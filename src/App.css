@@ -23,5 +23,11 @@
 }
 
 .Left{
-  margin-left: 10%;
+  margin-left: 8.2vw;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0px;
 }

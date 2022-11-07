@@ -1,8 +1,8 @@
-import Schedule from "../layout/Schedule";
+import Planner from "../layout/Planner";
 
 function UserPlannerPage() {
   return <div>
-    <Schedule></Schedule>
+    <Planner></Planner>
     </div>;
 }
 
