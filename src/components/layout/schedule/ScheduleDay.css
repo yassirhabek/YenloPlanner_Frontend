@@ -1,0 +1,24 @@
+.Index {
+    width: var(--box-size);
+    text-align: center;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.Top {
+    width: var(--box-size);
+    height: calc(var(--box-size) * 0.5);
+    background-color: var(--gray);
+    border-radius: 11px 11px 0px 0px;
+    border-bottom: 1px solid var(--black);
+}
+
+.Bottom {
+    width: var(--box-size);
+    height: calc(var(--box-size) * 0.5);
+    background-color: var(--gray);
+    border-radius: 0px 0px 11px 11px ;
+    border-top: 1px solid var(--black);
+}

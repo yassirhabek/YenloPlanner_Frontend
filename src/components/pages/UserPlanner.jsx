@@ -1,7 +1,9 @@
-import Legend from "../layout/Legend";
+import Schedule from "../layout/Schedule";
 
 function UserPlannerPage() {
-  return <div><Legend /></div>;
+  return <div>
+    <Schedule></Schedule>
+    </div>;
 }
 
 export default UserPlannerPage;
