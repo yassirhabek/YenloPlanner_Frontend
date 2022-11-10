@@ -1,0 +1,17 @@
+.trashIcon{
+    cursor: pointer;
+}
+
+.button{
+    cursor: pointer;
+    position: relative;
+    width: 350px;
+    height: 67px;
+    left: 78%;
+    top: 25px;
+
+    color: #FFFFFF;
+    background: #F8921E;
+    border: 2px #FFFFFF;
+    border-radius: 10px;
+}

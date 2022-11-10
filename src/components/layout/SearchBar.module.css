@@ -4,11 +4,9 @@
 }
 
 .search {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
   background: #ffffff;
   border-bottom: 2px solid #5793DB;
+  grid-column: 4 /span 6;
 }
 
 .search input {
@@ -21,6 +19,7 @@
   padding: 10px;
   height: 50%;
   width: 100%;
+
 }
 
 .searchIcon {
@@ -38,7 +37,7 @@ input:focus {
 
 .dataResult {
   margin-top: 5px;
-  width: inherit;
+  width: 100%;
   position: absolute;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
