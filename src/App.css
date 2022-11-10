@@ -23,7 +23,7 @@
 }
 
 .Left{
-  margin-left: 8.2vw;
+  /* grid-column-start: 2; */
 }
 
 .grid {

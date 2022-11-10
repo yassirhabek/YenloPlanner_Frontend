@@ -6,12 +6,11 @@ import Legend from "./planner/Legend";
 
 function Planner() {
     return (
-        <div className="grid">
+        <div>
             <div className="Schedule">
                 <Schedule></Schedule>
             </div>
             <div className="Legend">
-                <Legend></Legend>
             </div>
         </div>
     )

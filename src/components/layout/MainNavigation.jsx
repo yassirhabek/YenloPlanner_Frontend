@@ -9,7 +9,7 @@ import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
  return (
-    <div className="MainNavigation">
+    <div className="MainNavigation grid">
         <div className={classes.navbackground}>
             <Link className={classes.calender} to="/user-planner" >
                 <img src={Calender} alt="Calender SVG" />

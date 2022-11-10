@@ -1,7 +1,5 @@
 .Schedule {
     background-color: var(--white);
-    width: 600px;
-    height: 745px;
 }
 
 .row {
@@ -14,5 +12,4 @@
 }
 
 .ScheduleHeader {
-    width: 600px !important;
 }

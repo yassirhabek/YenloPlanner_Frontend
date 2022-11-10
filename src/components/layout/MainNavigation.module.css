@@ -1,9 +1,11 @@
 .navbackground{
+    grid-column: span 1;
     position: absolute;
     width: 119px;
     height: 100%;
     left: 0px; 
     background-color: #F7F6F6;
+    align-items: center;
 }
 
 .calender{
