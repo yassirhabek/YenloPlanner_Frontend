@@ -7,7 +7,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./CallinSick.modules.css";
 
-const sickstatus = true;
+const sickstatus = false;
 
 function getAllProjectManagers() {
   // fetch("http://localhost:8080/projectmanagers")
@@ -35,9 +35,9 @@ function CallInSickPage() {
       <div className="projectmanagerInput">
         <Autocomplete
           disablePortal
-          id="combo-box-demo"
+          id="combo-box-projectmanager"
           options={getAllProjectManagers()}
-          sx={{ width: 300 }}
+          sx={{ width: 500 }}
           renderInput={(params) => <TextField {...params} label="Project Managers" />}
         />
       </div>

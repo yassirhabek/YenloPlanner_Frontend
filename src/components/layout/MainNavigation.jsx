@@ -18,8 +18,7 @@ function MainNavigation() {
   const location = useLocation();
   let Navbar;
 
-
-  if (location.pathname === "/user-planner" && admin === true) {
+  if (location.pathname === "/" && admin === true) {
     Navbar = (
       <div className="MainNavigation">
         <div className={classes.navbackground}>
@@ -45,17 +44,16 @@ function MainNavigation() {
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-            <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
           </Link>
 
-          <Link className={classes.singleManage} to="/team-manage">
+          <Link className={classes.singleManage} to="/single-manage">
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
       </div>
     );
-  }
-  if (location.pathname === "/") {
+  } else if (location.pathname === "/") {
     Navbar = (
       <div className="MainNavigation">
         <div className={classes.navbackground}>
@@ -79,7 +77,7 @@ function MainNavigation() {
         </div>
       </div>
     );
-  } else if (location.pathname === "/user-planner") {
+  } else if (location.pathname === "/user-planner" && admin === true) {
     Navbar = (
       <div className="MainNavigation">
         <div className={classes.navbackground}>
@@ -94,6 +92,66 @@ function MainNavigation() {
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
             <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
+ } else if (location.pathname === "/user-planner") {
+      Navbar = (
+        <div className="MainNavigation">
+          <div className={classes.navbackground}>
+            <Link className={classes.calender} to="/user-planner">
+              <img src={CalendarActive} width="76" height="76" alt="Calender" />
+            </Link>
+            <Link className={classes.team} to="/team-planner">
+              <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            </Link>
+            <Link className={classes.sick} to="/call-in-sick">
+              <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            </Link>
+            <Link className={classes.leave} to="/ask-for-leave">
+              <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            </Link>
+          </div>
+        </div>
+    );
+  } else if (location.pathname === "/team-planner" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleActive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
       </div>
@@ -117,6 +175,36 @@ function MainNavigation() {
         </div>
       </div>
     );
+  } else if (location.pathname === "/call-in-sick" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartActive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
   } else if (location.pathname === "/call-in-sick") {
     Navbar = (
       <div className="MainNavigation">
@@ -136,7 +224,7 @@ function MainNavigation() {
         </div>
       </div>
     );
-  } else if (location.pathname === "/ask-for-leave") {
+  } else if (location.pathname === "/ask-for-leave" && admin === true) {
     Navbar = (
       <div className="MainNavigation">
         <div className={classes.navbackground}>
@@ -151,6 +239,99 @@ function MainNavigation() {
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
             <img src={PlaneActive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  else if (location.pathname === "/ask-for-leave") {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneActive} width="70" height="70" alt="Leave" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  else if (location.pathname === "/team-manage" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  else if (location.pathname === "/single-manage" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
       </div>
