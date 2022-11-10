@@ -8,7 +8,12 @@ function SearchBar({ placeholder, data }) {
   const [wordEntered, setWordEntered] = useState("");
 
   function pickEmployeeHandler(value){
-    alert(value + " - method to load agenda with data.");
+    if(value.name.indexOf("Project ") > -1){
+      alert(value.id + " - method to load agenda with team data.");
+    }
+    else{
+      alert(value.id + " - method to load agenda with user data.");
+    }
   }
 
   const handleFilter = (event) => {
@@ -51,7 +56,7 @@ function SearchBar({ placeholder, data }) {
         <div className={classes.dataResult}>
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              <a className={classes.dataItem} href={value.link} onClick={() => pickEmployeeHandler(value.id)}>
+              <a className={classes.dataItem} href={value.link} onClick={() => pickEmployeeHandler(value)}>
                 <p>{value.name} </p>
               </a>
             );
