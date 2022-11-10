@@ -14,13 +14,13 @@ import SingleManage from "../../assets/SingleManage.PNG";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
-  const admin = true;
+  const admin = false;
   const location = useLocation();
   let Navbar;
 
   if (location.pathname === "/" && admin === true) {
     Navbar = (
-      <div className="MainNavigation grid">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img
@@ -55,7 +55,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/") {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img
@@ -79,7 +79,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/user-planner" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarActive} width="76" height="76" alt="Calender" />
@@ -109,7 +109,7 @@ function MainNavigation() {
     );
  } else if (location.pathname === "/user-planner") {
       Navbar = (
-        <div className="MainNavigation">
+        <div className="grid">
           <div className={classes.navbackground}>
             <Link className={classes.calender} to="/user-planner">
               <img src={CalendarActive} width="76" height="76" alt="Calender" />
@@ -128,7 +128,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/team-planner" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -158,7 +158,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/team-planner") {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -177,7 +177,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/call-in-sick" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -207,7 +207,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/call-in-sick") {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -226,7 +226,7 @@ function MainNavigation() {
     );
   } else if (location.pathname === "/ask-for-leave" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -257,7 +257,7 @@ function MainNavigation() {
   }
   else if (location.pathname === "/ask-for-leave") {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -277,7 +277,7 @@ function MainNavigation() {
   }
   else if (location.pathname === "/team-manage" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -308,7 +308,7 @@ function MainNavigation() {
   }
   else if (location.pathname === "/single-manage" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
