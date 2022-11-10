@@ -1,0 +1,224 @@
+.Firstw {
+  position: absolute;
+  width: 138px;
+  height: 80px;
+  left: 361px;
+  top: 127px;
+  z-index: -1;
+
+  background: #f7f6f6;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #5793db;
+  border-radius: 0px 0px 4px 4px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Firstw p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.Secondw {
+  position: absolute;
+  width: 138px;
+  height: 80px;
+  left: 499px;
+  top: 127px;
+  z-index: -1;
+
+  background: #f7f6f6;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #5793db;
+  border-radius: 0px 0px 4px 4px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Secondw p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.Thirdw {
+  position: absolute;
+  width: 138px;
+  height: 80px;
+  left: 637px;
+  top: 127px;
+  z-index: -1;
+
+  background: #f7f6f6;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #5793db;
+  border-radius: 0px 0px 4px 4px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Thirdw p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.Fourthw {
+  position: absolute;
+  width: 138px;
+  height: 80px;
+  left: 775px;
+  top: 127px;
+  z-index: -1;
+
+  background: #f7f6f6;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #5793db;
+  border-radius: 0px 0px 4px 4px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Fourthw p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.Fifthw {
+  position: absolute;
+  width: 138px;
+  height: 80px;
+  left: 913px;
+  top: 127px;
+  z-index: -1;
+
+  background: #f7f6f6;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #5793db;
+  border-radius: 4px 4px 4px 4px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Fifthw p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.morningblock p {
+  position: absolute;
+  width: 100%;
+  left: -35px;
+  top: 55px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.middayblock p {
+  position: absolute;
+  width: 100%;
+  left: 35px;
+  top: 55px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.dateblock p {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 25px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.grid {
+  position: absolute;
+  display: inline-grid;
+  grid-auto-rows: 50px;
+  width: 100%;
+  height: 100%;
+  top: 206px;
+  left: 0px;
+  overflow-y: scroll;
+  max-height: 200px;
+  z-index: -1;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}

@@ -1,7 +1,7 @@
 .navbackground{
     position: absolute;
     width: 119px;
-    height: 100%;
+    height: calc(100% - 75px);
     left: 0px; 
     background-color: #F7F6F6;
 }
