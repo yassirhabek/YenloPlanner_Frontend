@@ -7,11 +7,8 @@ import Legend from "./planner/Legend";
 function Planner() {
     return (
         <div>
-            <div className="Schedule">
-                <Schedule></Schedule>
-            </div>
-            <div className="Legend">
-            </div>
+            <Schedule></Schedule>
+            <Legend></Legend>
         </div>
     )
 }

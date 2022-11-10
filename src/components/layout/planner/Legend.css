@@ -3,18 +3,15 @@
     --header-height:  50px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 19px;
-    font-style: normal;
-    font-weight: 400;
-    height: var(--header-height);
-    line-height: var(--header-height);
-    color: var(--black);
-    background-color: var(--white);
-    border-radius: 0px 5px 0px 0px;
-    border-bottom: 2px solid var(--blue);
-    margin: 0px;
+.LegendMain {
+    grid-column: 9 / span 2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.LegendHeader {
+    grid-column: span 2;
 }
 
 ul {
@@ -58,17 +55,16 @@ li {
 }
 
 .LegendBody {
-    flex-direction: column;
-    display: flex;
     align-items: center;
     text-align: center;
     width: 238px;
     height: 564px;
     background-color: var(--white);
     border-style: solid;
-    border-width: 0px 0px 0px 2px;
+    border-width: 0px 0px 2px 0px;
     border-color: var(--blue);
     border-radius: 0px 0px 5px 0px;
+    grid-column: 10 / span 2;
 }
 
 .Align{
