@@ -20,7 +20,7 @@ function MainNavigation() {
 
   if (location.pathname === "/" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
+      <div className="MainNavigation grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img
