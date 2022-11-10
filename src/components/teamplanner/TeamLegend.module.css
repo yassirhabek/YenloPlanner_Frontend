@@ -17,7 +17,7 @@
   left: 150px;
   top: 20px;
 
-  background: #adc669;
+  background: var(--clrOffice);
   border-radius: 11px;
 }
 
@@ -44,7 +44,7 @@
   left: 331px;
   top: 20px;
 
-  background: #8ac1e9;
+  background: var(--clrHome);
   border-radius: 11px;
 }
 
@@ -71,7 +71,7 @@
   left: 512px;
   top: 20px;
 
-  background: #cc90cd;
+  background: var(--clrCustomer);
   border-radius: 11px;
 }
 
@@ -98,7 +98,7 @@
   left: 693px;
   top: 20px;
 
-  background: #e27c7c;
+  background: var(--clrSick);
   border-radius: 11px;
 }
 
@@ -125,7 +125,7 @@
   left: 874px;
   top: 20px;
 
-  background: #f0e580;
+  background: var(--clrLeave);
   border-radius: 11px;
 }
 

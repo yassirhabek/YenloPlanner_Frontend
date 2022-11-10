@@ -21,6 +21,9 @@
   --font: Arial, Helvetica, sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
 
 .App {
   font-family: var(--font);

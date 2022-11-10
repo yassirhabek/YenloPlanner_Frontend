@@ -64,3 +64,8 @@
     left: 23px;
     top: 472px;
 }
+
+.calender img, .team img, .sick img, .leave img, .singleManage img, .teamManage img {
+    width: 5vw;
+    height: 5vw;
+}

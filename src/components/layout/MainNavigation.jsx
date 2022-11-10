@@ -30,24 +30,24 @@ function MainNavigation() {
             />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team SVG" />
+            <img src={PeopleInactive} width="70"  alt="Team SVG" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick SVG" />
+            <img src={HeartInactive} width="70"  alt="Sick SVG" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave SVG" />
+            <img src={PlaneInactive} width="70"  alt="Leave SVG" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -63,13 +63,13 @@ function MainNavigation() {
             />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team SVG" />
+            <img src={PeopleInactive} width="70"  alt="Team SVG" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick SVG" />
+            <img src={HeartInactive} width="70"  alt="Sick SVG" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave SVG" />
+            <img src={PlaneInactive} width="70"  alt="Leave SVG" />
           </Link>
         </div>
     );
@@ -80,24 +80,24 @@ function MainNavigation() {
             <img src={CalendarActive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive}   alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -108,13 +108,13 @@ function MainNavigation() {
               <img src={CalendarActive} width="76" height="76" alt="Calender" />
             </Link>
             <Link className={classes.team} to="/team-planner">
-              <img src={PeopleInactive} width="70" height="70" alt="Team" />
+              <img src={PeopleInactive} width="70"  alt="Team" />
             </Link>
             <Link className={classes.sick} to="/call-in-sick">
-              <img src={HeartInactive} width="70" height="70" alt="Sick" />
+              <img src={HeartInactive} width="70"  alt="Sick" />
             </Link>
             <Link className={classes.leave} to="/ask-for-leave">
-              <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+              <img src={PlaneInactive} width="70"  alt="Leave" />
             </Link>
           </div>
     );
@@ -125,24 +125,24 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleActive} width="70" height="70" alt="Team" />
+            <img src={PeopleActive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -153,13 +153,13 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleActive} width="70" height="70" alt="Team" />
+            <img src={PeopleActive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
         </div>
     );
@@ -170,24 +170,24 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartActive} width="70" height="70" alt="Sick" />
+            <img src={HeartActive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -198,13 +198,13 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartActive} width="70" height="70" alt="Sick" />
+            <img src={HeartActive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
         </div>
     );
@@ -215,24 +215,24 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneActive} width="70" height="70" alt="Leave" />
+            <img src={PlaneActive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -244,13 +244,13 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneActive} width="70" height="70" alt="Leave" />
+            <img src={PlaneActive} width="70"  alt="Leave" />
           </Link>
         </div>
     );
@@ -262,24 +262,24 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
@@ -291,24 +291,24 @@ function MainNavigation() {
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
-            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+            <img src={PeopleInactive} width="70"  alt="Team" />
           </Link>
           <Link className={classes.sick} to="/call-in-sick">
-            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+            <img src={HeartInactive} width="70"  alt="Sick" />
           </Link>
           <Link className={classes.leave} to="/ask-for-leave">
-            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+            <img src={PlaneInactive} width="70"  alt="Leave" />
           </Link>
 
           <div className={classes.adminLine}>
           </div>
 
           <Link className={classes.teamManage} to="/team-manage">
-             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+             <img src={TeamManage} width="70"  alt="Manage SVG" />
           </Link>
 
           <Link className={classes.singleManage} to="/single-manage">
-            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+            <img src={SingleManage} width="70"  alt="Manage SVG" />
           </Link>
         </div>
     );
