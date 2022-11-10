@@ -8,13 +8,53 @@ import PeopleActive from "../../assets/PeopleActive.PNG";
 import PeopleInactive from "../../assets/PeopleInactive.PNG";
 import HeartActive from "../../assets/HeartActive.PNG";
 import HeartInactive from "../../assets/HeartInactive.PNG";
+import TeamManage from "../../assets/TeamManage.PNG";
+import SingleManage from "../../assets/SingleManage.PNG";
 
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
+  const admin = true;
   const location = useLocation();
   let Navbar;
 
+
+  if (location.pathname === "/user-planner" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img
+              src={CalendarInactive}
+              width="76"
+              height="76"
+              alt="Calender SVG"
+            />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team SVG" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick SVG" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave SVG" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+            <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/team-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
   if (location.pathname === "/") {
     Navbar = (
       <div className="MainNavigation">
@@ -116,7 +156,6 @@ function MainNavigation() {
       </div>
     );
   }
-
   return <div>{Navbar}</div>;
 }
 

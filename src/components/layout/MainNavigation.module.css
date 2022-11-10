@@ -37,3 +37,29 @@
     left: 23px;
     top: 343px;
 }
+
+.adminLine{
+    position: absolute;
+    width: 77px;
+    height: 0px;
+    left: 21px;
+    top: 549px;
+
+    border: 1px solid #181515;
+}
+
+.singleManage{
+    position: absolute;
+    width: 86px;
+    height: 84px;
+    left: 21px;
+    top: 651px;
+}
+
+.teamManage{
+    position: absolute;
+    width: 76px;
+    height: 67px;
+    left: 23px;
+    top: 572px;
+}
