@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,6 +12,7 @@ import Trash from '../../assets/TrashIcon.png';
 
 
 function singleManagmentPage() {
+  const url = "/create-user";
   function getAllWerknemers() {
     try{
       // const response = await fetch("http://localhost:5000/werknemers");
@@ -53,8 +55,9 @@ function singleManagmentPage() {
             </TableBody>
           </Table>
         </TableContainer>
-
-        <button className={classes.button}>Create New User</button>
+        <Link to={url}>
+          <button className={classes.button}>Create New User</button>
+        </Link>
       </div>
     );
 }

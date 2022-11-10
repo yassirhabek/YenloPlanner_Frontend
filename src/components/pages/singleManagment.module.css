@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+.container{
+    width: calc(100% - 119px);
+    margin-left: 119px;
+}
+
 .button{
     cursor: pointer;
     position: relative;
