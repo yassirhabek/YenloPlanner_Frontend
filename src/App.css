@@ -1,4 +1,7 @@
 :root {
+
+  --box-size: 100px;
+  
   /* COLORS */
   --white: #F7F6F6;
   --gray: #D9D9D9;
@@ -17,6 +20,7 @@
   --medium-font-size: 19px;
   --font: Arial, Helvetica, sans-serif;
 }
+
 
 .App {
   font-family: var(--font);

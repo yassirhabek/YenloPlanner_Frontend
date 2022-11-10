@@ -20,7 +20,6 @@ function MainNavigation() {
 
   if (location.pathname === "/" && admin === true) {
     Navbar = (
-      <div className="MainNavigation grid">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img
@@ -51,11 +50,9 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/") {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img
@@ -75,11 +72,9 @@ function MainNavigation() {
             <img src={PlaneInactive} width="70" height="70" alt="Leave SVG" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/user-planner" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarActive} width="76" height="76" alt="Calender" />
@@ -105,11 +100,9 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
  } else if (location.pathname === "/user-planner") {
       Navbar = (
-        <div className="MainNavigation">
           <div className={classes.navbackground}>
             <Link className={classes.calender} to="/user-planner">
               <img src={CalendarActive} width="76" height="76" alt="Calender" />
@@ -124,11 +117,9 @@ function MainNavigation() {
               <img src={PlaneInactive} width="70" height="70" alt="Leave" />
             </Link>
           </div>
-        </div>
     );
   } else if (location.pathname === "/team-planner" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -154,11 +145,9 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/team-planner") {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -173,11 +162,9 @@ function MainNavigation() {
             <img src={PlaneInactive} width="70" height="70" alt="Leave" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/call-in-sick" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -203,11 +190,9 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/call-in-sick") {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -222,11 +207,9 @@ function MainNavigation() {
             <img src={PlaneInactive} width="70" height="70" alt="Leave" />
           </Link>
         </div>
-      </div>
     );
   } else if (location.pathname === "/ask-for-leave" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -252,12 +235,10 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   }
   else if (location.pathname === "/ask-for-leave") {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -272,12 +253,10 @@ function MainNavigation() {
             <img src={PlaneActive} width="70" height="70" alt="Leave" />
           </Link>
         </div>
-      </div>
     );
   }
   else if (location.pathname === "/team-manage" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
@@ -303,13 +282,11 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   }
   else if (location.pathname === "/single-manage" && admin === true) {
     Navbar = (
-      <div className="MainNavigation">
-        <div className={classes.navbackground}>
+        <div >
           <Link className={classes.calender} to="/user-planner">
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
@@ -334,10 +311,9 @@ function MainNavigation() {
             <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
           </Link>
         </div>
-      </div>
     );
   }
-  return <div>{Navbar}</div>;
+  return <div class="grid">{Navbar}</div>;
 }
 
 export default MainNavigation;
