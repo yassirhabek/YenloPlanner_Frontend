@@ -1,28 +1,30 @@
 .week {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 59px);
   height: 27px;
-  top: 118px;
+  top: 85px;
+  right: 0;
+  z-index: -1;
 }
 
 .week .arrowl {
   position: absolute;
   width: 36px;
   height: 36px;
-  left: 342px;
+  left: 492px;
 }
 
 .week .arrowr {
   position: absolute;
   width: 36px;
   height: 36px;
-  left: 583px;
+  left: 733px;
 }
 
 .week p {
   position: absolute;
   height: 35px;
-  left: 420px;
+  left: 570px;
 
   font-family: "Inter";
   font-style: normal;
