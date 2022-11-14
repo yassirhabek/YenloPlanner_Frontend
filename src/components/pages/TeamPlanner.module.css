@@ -19,12 +19,12 @@
 
 .week p {
   position: absolute;
-  left: 49.2%;
+  left: 48.5%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 119%;
   line-height: 200%;
   display: flex;
   align-items: center;
