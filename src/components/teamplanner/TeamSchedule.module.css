@@ -1,9 +1,9 @@
 .Firstw {
   position: absolute;
-  width: 138px;
-  height: 80px;
-  left: 361px;
-  top: 127px;
+  width: 10.8%;
+  height: 13%;
+  left: 28.2%;
+  top: 20.9%;
   z-index: -1;
 
   background: #f7f6f6;
@@ -17,14 +17,14 @@
 .Firstw p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 5px;
+  left: 0%;
+  top: 10%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
-  line-height: 23px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -32,10 +32,10 @@
 
 .Secondw {
   position: absolute;
-  width: 138px;
-  height: 80px;
-  left: 499px;
-  top: 127px;
+  width: 10.8%;
+  height: 13%;
+  left: 39%;
+  top: 20.9%;
   z-index: -1;
 
   background: #f7f6f6;
@@ -49,14 +49,14 @@
 .Secondw p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 5px;
+  left: 0%;
+  top: 10%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
-  line-height: 23px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -64,10 +64,10 @@
 
 .Thirdw {
   position: absolute;
-  width: 138px;
-  height: 80px;
-  left: 637px;
-  top: 127px;
+  width: 10.8%;
+  height: 13%;
+  left: 49.8%;
+  top: 20.9%;
   z-index: -1;
 
   background: #f7f6f6;
@@ -81,14 +81,14 @@
 .Thirdw p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 5px;
+  left: 0%;
+  top: 10%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
-  line-height: 23px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -96,10 +96,10 @@
 
 .Fourthw {
   position: absolute;
-  width: 138px;
-  height: 80px;
-  left: 775px;
-  top: 127px;
+  width: 10.8%;
+  height: 13%;
+  left: 60.6%;
+  top: 20.9%;
   z-index: -1;
 
   background: #f7f6f6;
@@ -113,14 +113,14 @@
 .Fourthw p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 5px;
+  left: 0%;
+  top: 10%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
-  line-height: 23px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -128,10 +128,10 @@
 
 .Fifthw {
   position: absolute;
-  width: 138px;
-  height: 80px;
-  left: 913px;
-  top: 127px;
+  width: 10.8%;
+  height: 13%;
+  left: 71.4%;
+  top: 20.9%;
   z-index: -1;
 
   background: #f7f6f6;
@@ -145,14 +145,14 @@
 .Fifthw p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 5px;
+  left: 0%;
+  top: 10%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 19px;
-  line-height: 23px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -161,14 +161,14 @@
 .morningblock p {
   position: absolute;
   width: 100%;
-  left: -35px;
-  top: 55px;
+  left: -25%;
+  top: 75%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -177,14 +177,14 @@
 .middayblock p {
   position: absolute;
   width: 100%;
-  left: 35px;
-  top: 55px;
+  left: 25%;
+  top: 75%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -193,14 +193,14 @@
 .dateblock p {
   position: absolute;
   width: 100%;
-  left: 0px;
-  top: 25px;
+  left: 0%;
+  top: 35%;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 100%;
   text-align: center;
 
   color: #000000;
@@ -209,13 +209,13 @@
 .grid {
   position: absolute;
   display: inline-grid;
-  grid-auto-rows: 50px;
+  grid-auto-rows: 20%;
   width: 100%;
   height: 100%;
-  top: 206px;
-  left: 0px;
+  top: 34%;
+  left: 0%;
   overflow-y: scroll;
-  max-height: 200px;
+  max-height: 41%;
   z-index: -1;
 }
 

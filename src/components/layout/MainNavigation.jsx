@@ -14,7 +14,7 @@ import SingleManage from "../../assets/SingleManage.PNG";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
-  const admin = false;
+  const admin = true;
   const location = useLocation();
   let Navbar;
 
