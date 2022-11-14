@@ -8,6 +8,7 @@ import TeamPlannerPage from "./components/pages/TeamPlanner";
 import UserPlannerPage from "./components/pages/UserPlanner";
 import SingleManagmentPage from "./components/pages/singleManagment";
 import TeamManagmentPage from "./components/pages/teamManagment";
+import CreateUserPage from "./components/pages/CreateUser";
 
 import "./App.css";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/user-planner" element={<UserPlannerPage />} />
         <Route path="/single-manage" element={<SingleManagmentPage />} />
         <Route path="/team-manage" element={<TeamManagmentPage />} />
+        <Route path="/create-user" element={<CreateUserPage />} />
       </Routes>
       </div>
     </div>

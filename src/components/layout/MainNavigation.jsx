@@ -312,6 +312,36 @@ function MainNavigation() {
           </Link>
         </div>
     );
+  }  else if (location.pathname === "/create-user" && admin === true) {
+    Navbar = (
+      <div className="MainNavigation">
+        <div className={classes.navbackground}>
+          <Link className={classes.calender} to="/user-planner">
+            <img src={CalendarInactive} width="76" height="76" alt="Calender" />
+          </Link>
+          <Link className={classes.team} to="/team-planner">
+            <img src={PeopleInactive} width="70" height="70" alt="Team" />
+          </Link>
+          <Link className={classes.sick} to="/call-in-sick">
+            <img src={HeartInactive} width="70" height="70" alt="Sick" />
+          </Link>
+          <Link className={classes.leave} to="/ask-for-leave">
+            <img src={PlaneInactive} width="70" height="70" alt="Leave" />
+          </Link>
+
+          <div className={classes.adminLine}>
+          </div>
+
+          <Link className={classes.teamManage} to="/team-manage">
+             <img src={TeamManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+
+          <Link className={classes.singleManage} to="/single-manage">
+            <img src={SingleManage} width="70" height="70" alt="Manage SVG" />
+          </Link>
+        </div>
+      </div>
+    );
   }
   return <div class="grid">{Navbar}</div>;
 }
