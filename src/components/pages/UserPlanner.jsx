@@ -1,12 +1,18 @@
 import Planner from "../layout/Planner";
 import Legend from "../layout/planner/Legend";
 import Schedule from "../layout/planner/Schedule";
+import EditSchedule from "../layout/planner/EditSchedule";
 
-function UserPlannerPage() {
-  return <div className="grid" style={{position: "relative", zIndex: -1, paddingTop: 15}}>
-      <Schedule></Schedule>
-      <Legend></Legend>
-    </div>;
+function UserPlannerPage(props) {
+  if (!props.editMode) {
+    return <div className="grid" style={{position: "relative", paddingTop: 15}}>
+        <Schedule></Schedule>
+      </div>;
+  } else {
+    return <div className="grid" style={{position: "relative", paddingTop: 15}}>
+        <EditSchedule></EditSchedule>
+      </div>;
+  }
 }
 
 export default UserPlannerPage;

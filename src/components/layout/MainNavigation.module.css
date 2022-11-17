@@ -5,6 +5,7 @@
     height: 100%;
     background-color: var(--white);
     align-items: center;
+    z-index: 1;
 }
 
 .calender{

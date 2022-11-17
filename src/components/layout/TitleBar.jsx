@@ -41,7 +41,21 @@ function TitleBar() {
         />
       </header>
     );
-  } else if (location.pathname === "/team-planner") {
+  } else if (location.pathname === "/user-planner/edit") {
+    Titlebar = (
+      <header className={classes.header}>
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
+        <SearchBar placeholder="Search Employee..." data={Data} className={classes.search}/>
+        <img
+          src={Uitloggen}
+          alt="Uitloggen"
+          className={classes.logout}
+          onClick={logOutHandler}
+        />
+      </header>
+    );
+  }
+  else if (location.pathname === "/team-planner") {
     Titlebar = (
       <header className={classes.header}>
         <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>

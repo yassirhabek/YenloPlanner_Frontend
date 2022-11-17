@@ -1,4 +1,4 @@
-.Index {
+/* .Index {
     width: var(--box-size);
     text-align: center;
 }
@@ -16,3 +16,7 @@
     border-radius: 0px 0px 11px 11px ;
     border-top: 1px solid var(--black);
 }
+
+.Top:hover, .Bottom:hover {
+    background-color: var(--white);
+} */
