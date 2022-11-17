@@ -17,17 +17,18 @@ function App() {
     <div className="App">
       <TitleBar />
       <MainNavigation />
-      <div className="Left">
+      
       <Routes>
         <Route path="/ask-for-leave" element={<AskForLeavePage />} />
         <Route path="/call-in-sick" element={<CallInSickPage />} />
         <Route path="/team-planner" element={<TeamPlannerPage />} />
-        <Route path="/user-planner" element={<UserPlannerPage />} />
+        <Route path="/user-planner" element={<UserPlannerPage editMode={false}/>} />
+        <Route path="/user-planner/edit" element={<UserPlannerPage editMode={true} />} />
         <Route path="/single-manage" element={<SingleManagmentPage />} />
         <Route path="/team-manage" element={<TeamManagmentPage />} />
         <Route path="/create-user" element={<CreateUserPage />} />
       </Routes>
-      </div>
+      
     </div>
   );
 }

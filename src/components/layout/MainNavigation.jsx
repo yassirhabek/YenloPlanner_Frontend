@@ -73,7 +73,7 @@ function MainNavigation() {
           </Link>
         </div>
     );
-  } else if (location.pathname === "/user-planner" && admin === true) {
+  } else if ((location.pathname === "/user-planner" || location.pathname === "/user-planner/edit" ) && admin === true) {
     Navbar = (
         <div className={classes.navbackground}>
           <Link className={classes.calender} to="/user-planner">
@@ -101,7 +101,7 @@ function MainNavigation() {
           </Link>
         </div>
     );
- } else if (location.pathname === "/user-planner") {
+ } else if (location.pathname === "/user-planner" || location.pathname === "/user-planner/edit" ) {
       Navbar = (
           <div className={classes.navbackground}>
             <Link className={classes.calender} to="/user-planner">
