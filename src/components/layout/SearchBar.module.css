@@ -1,5 +1,5 @@
 .searchInputs {
-  margin-top: 10px;
+  margin-top: 1%;
   display: flex;
 }
 
@@ -15,15 +15,15 @@
   border-radius: 2px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  font-size: 18px;
-  padding: 10px;
+  font-size: 110%;
+  padding: 1.4%;
   height: 50%;
   width: 100%;
 
 }
 
 .searchIcon {
-  width: 50px;
+  width: 7.5%;
   background-color: white;
   place-items: center;
 }
@@ -32,12 +32,12 @@ input:focus {
   outline: none;
 }
 .searchIcon svg {
-  font-size: 40px;
+  font-size: 250%;
 }
 
 .dataResult {
-  margin-top: 5px;
-  width: 100%;
+  margin-top: 0.5%;
+  width: 50%;
   position: absolute;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -56,8 +56,8 @@ input:focus {
 }
 
 .dataItem p {
-  margin-left: 10px;
-  margin-top: 15px;
+  margin-left: 1.5%;
+  margin-top: 2.5%;
 }
 
 .dataResult a {

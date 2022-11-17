@@ -1,52 +1,63 @@
 import * as React from "react";
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 //import Button from '@mui/material/Button';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./CallinSick.modules.css";
 
-const sickstatus = false;
+const sickstatus = true;
 
 function getAllProjectManagers() {
   // fetch("http://localhost:8080/projectmanagers")
   // .then((response) => response.json())
   // .then((data) => data);
-  return (
-    [{label: "John Doe", id: 1}, {label: "Jane Doe", id: 2}, {label: "Joe Doe", id: 3}, {label: "Jill Doe", id: 4}]
-  )
+  return [
+    { label: "Wim van der Pluijm", id: 1 },
+    { label: "Jane Doe", id: 2 },
+    { label: "Joe Doe", id: 3 },
+    { label: "Jill Doe", id: 4 },
+  ];
 }
 
-function callSick(){
+function callSick() {
   alert("Functionality not yet implemented for calling in sick");
 }
 
-function callBetter(){
+function callBetter() {
   alert("Functionality not yet implemented for calling in better");
 }
 
 function CallInSickPage() {
   if (sickstatus === true) {
-  return (
-    <div className="container">
-      
-      <p className="label">You are currently marked sick</p>
-      <div className="projectmanagerInput">
-        <Autocomplete
-          disablePortal
-          id="combo-box-projectmanager"
-          options={getAllProjectManagers()}
-          sx={{ width: 500 }}
-          renderInput={(params) => <TextField {...params} label="Project Managers" />}
-        />
-      </div>
+    return (
+      <div className="container">
+        <p className="label">
+          <i>You are currently marked sick.</i>
+        </p>
+        <div className="projectmanagerInput">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={getAllProjectManagers()}
+            sx={{ width: 300, "& .MuiOutputBase-root": { width: "300px" } }}
+            renderInput={(params) => (
+              <TextField {...params} label="Project Managers" />
+            )}
+          />
+        </div>
 
-      <div className="sickstatusInput">
-        <button type="button" class="buttonsick btn btn-success" onClick={callBetter}>Call In Better</button>
+        <div className="sickstatusInput">
+          <button
+            type="button"
+            class="buttonsick btn btn-success"
+            onClick={callBetter}
+          >
+            Call In Better
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
   } else {
     return (
       <div className="container">
@@ -56,16 +67,32 @@ function CallInSickPage() {
             id="combo-box-demo"
             options={getAllProjectManagers()}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Project Managers" />}
+            renderInput={(params) => (
+              <TextField {...params} label="Project Managers" />
+            )}
           />
         </div>
 
-        <div className="sickstatusInput">
-          <button type="button" class="buttonsick btn btn-danger" onClick={callSick}>Call In Sick</button>
-
-          <TextField id="reasonSick" className="inputsick" label="Reason for Calling In Sick (Not Required)" variant="outlined" sx={{ width: 400}} />
+        <div>
+          <button
+            type="button"
+            class="buttonsick btn btn-danger"
+            onClick={callSick}
+          >
+            Call In Sick
+          </button>
+          <div className="inputsick">
+            <TextField
+              id="reasonSick"
+              label="Reason for Calling In Sick (Not Required)"
+              variant="outlined"
+              sx={{ width: 385 }}
+              multiline
+              rows={3}
+            />
+          </div>
         </div>
-    </div>
+      </div>
     );
   }
 }

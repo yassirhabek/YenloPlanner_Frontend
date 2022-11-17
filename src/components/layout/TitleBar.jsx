@@ -22,10 +22,9 @@ function TitleBar() {
     { name: "Yassir", id: 6 },
   ];
   const TeamData = [
-    { name: "Project Design", id: 1 },
-    { name: "Project Performance", id: 2 },
-    { name: "Project Security", id: 3 },
-    { name: "Project Data", id: 4 },
+    { name: "Project Fontys", id: 1 },
+    { name: "Project Planner", id: 2 },
+    { name: "Project Yenlo", id: 3 },
   ];
 
   if (location.pathname === "/user-planner") {
