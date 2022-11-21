@@ -59,9 +59,21 @@ function Legend() {
 }
 
 function allDays() {
+    const availabilities = getUserData();
     let days = [];
     for (let index = 0; index < 25; index++) {
-        days[index] = Day(index, 1, 1);
+        for (let i = 0; i < availabilities.length; i++) {
+            const ava = availabilities[i];
+            if (findIndexByDate(ava.dateTime) === index) {
+                // TODO: this. :-(
+                if (ava.beforeMidday) {
+                    days[index] = Day(index, ava.status, 0);
+                } else 
+                days[index] = Day(index, 0, ava.status);
+                break;
+            }
+            days[index] = Day(index, 0, 0);
+        }
     }
     return days;
 }
@@ -71,10 +83,10 @@ function Day(index, morning, noon) {
         <p className="dateNum">99</p>
         <div id={`morning-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }} className="Top">
             <span class="plannerTooltip">0 people in office</span>
-            </div>
+        </div>
         <div id={`midday-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }} className="Bottom">
             <span class="plannerTooltip">0 people in office</span>
-            </div>
+        </div>
     </div>;
 }
 
@@ -95,7 +107,28 @@ function ColorByStatus(status) {
     }
 }
 
-function edit() {
-    ;
+function getUserData() {
+    let availabilities = [
+        {
+            beforeMidday: true,
+            dateTime: new Date('2022-11-24'),
+            status: 3
+        },
+        {
+            beforeMidday: false,
+            dateTime: Date.now(),
+            status: 2
+        }
+    ]
+    return availabilities;
+}
+
+function fillPlannerWithDates() {
+    // TODO: have this fill every index of the planner page with the correct datetime.
+}
+
+function findIndexByDate(date) {
+    return Math.floor(Math.random() * 51);
+    // TODO: have this return the index in the planner based on the given date.
 }
 export default Schedule;

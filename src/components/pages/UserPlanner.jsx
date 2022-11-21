@@ -1,5 +1,4 @@
-import Planner from "../layout/Planner";
-import Legend from "../layout/planner/Legend";
+
 import Schedule from "../layout/planner/Schedule";
 import EditSchedule from "../layout/planner/EditSchedule";
 
