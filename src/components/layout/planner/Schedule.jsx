@@ -59,20 +59,29 @@ function Legend() {
 }
 
 function allDays() {
-    const availabilities = getUserData();
+    const availabilityPairs = getUserData();
     let days = [];
     for (let index = 0; index < 25; index++) {
-        for (let i = 0; i < availabilities.length; i++) {
-            const ava = availabilities[i];
-            if (findIndexByDate(ava.dateTime) === index) {
-                // TODO: this. :-(
-                if (ava.beforeMidday) {
-                    days[index] = Day(index, ava.status, 0);
-                } else 
-                days[index] = Day(index, 0, ava.status);
+        days[index] = Day(index, 0, 0);
+    }
+
+    for (let i = 0; i < availabilityPairs.length; i++) {
+        const avaPair = availabilityPairs[i];
+        let n = findIndexByDate(avaPair[0].dateTime);
+        for (let j = 0; j < 25; j++) {
+            if (j === n) {
+                if (avaPair[1] != null) {
+                    days[j] = Day(j, avaPair[0].status, avaPair[1].status);
+                }
+                else {
+                    const ava = avaPair[0];
+                    if (ava.beforeMidday)
+                        days[j] = Day(j, avaPair[0].status, 0);
+                    else 
+                    days[j] = Day(j, 0, avaPair[0].status);
+                }
                 break;
             }
-            days[index] = Day(index, 0, 0);
         }
     }
     return days;
@@ -110,6 +119,7 @@ function ColorByStatus(status) {
 }
 
 function getUserData() {
+    // retrieve data here:
     let availabilities = [
         {
             beforeMidday: true,
@@ -120,9 +130,31 @@ function getUserData() {
             beforeMidday: false,
             dateTime: Date.now(),
             status: 2
+        },
+        {
+            beforeMidday: false,
+            dateTime: new Date('2022-11-24'),
+            status: 2
         }
-    ]
-    return availabilities;
+    ];
+
+    // sort array
+    let result = [];
+    for (let i = 0; i < availabilities.length; i++) {
+        const ava = availabilities[i];
+        let newIndex = true;
+        for (let j = 0; j < result.length; j++) {
+            const resultAva = result[j];
+            if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
+                result[j] = [resultAva[0], ava];
+                newIndex = false;
+                break;
+            }
+        }
+        if (newIndex)
+            result.push([ava]);
+    }
+    return result;
 }
 
 function fillPlannerWithDates() {
@@ -130,7 +162,17 @@ function fillPlannerWithDates() {
 }
 
 function findIndexByDate(date) {
-    return Math.floor(Math.random() * 51);
+    return Math.floor(Math.random() * 25);
     // TODO: have this return the index in the planner based on the given date.
+}
+
+function isSameDay(date1, date2) {
+    date1 = new Date(date1);
+    date2 = new Date(date2);
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+      );
 }
 export default Schedule;
