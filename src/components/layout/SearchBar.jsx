@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./SearchBar.module.css";
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar({ placeholder, data }) {
+  const navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
   function pickEmployeeHandler(value){
     if(value.name.indexOf("Project ") > -1){
-      alert(value.id + " - method to load agenda with team data.");
+      navigate("/team-planner", { replace: true, state: {teamId: value.id, name: value.name} });
     }
     else{
       alert(value.id + " - method to load agenda with user data.");

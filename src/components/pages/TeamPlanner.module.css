@@ -32,3 +32,16 @@
 
   color: #181515;
 }
+
+.teamname{
+  position: absolute;
+  width: calc(100%);
+  top: 25%;
+  left: 18.5%;
+  z-index: -1;
+}
+
+.teamname p{
+  font-family: "Inter";
+  font-style: normal;
+}

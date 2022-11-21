@@ -222,3 +222,23 @@
 .grid::-webkit-scrollbar {
   display: none;
 }
+
+.noteam{
+  position: absolute;
+  width: 100%;
+  top: 45%;
+  left: 45%;
+}
+
+.noteam p{
+  position: absolute;
+  width: 100%;
+  left: 0%;
+  top: 35%;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100%;
+  line-height: 100%;
+}

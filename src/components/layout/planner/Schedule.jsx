@@ -104,6 +104,8 @@ function ColorByStatus(status) {
             return "clrSick";
         case 5:
             return "clrLeave"
+        default:
+            return "gray";
     }
 }
 

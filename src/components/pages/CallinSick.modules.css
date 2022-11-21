@@ -2,30 +2,28 @@
     position: absolute;
     margin: auto;
     left: 41.5%;
-    top: 350px;
+    top: 40%;
 }
 
 .label{
     position: absolute;
     margin: auto;
-    left: 41.5%;
-    top: 320px;
+    left: 45%;
+    top: 35%;
 }
 
 .buttonsick {
     position: absolute;
     margin: auto;
-    left: 41.5%;
-    top: 440px;
-    width: 300px;
-    height: 50px;
+    left: 38%;
+    top: 50%;
+    width: 30%;
+    height: 7.5%;
 }
 
 .inputsick{
     position: absolute;
     margin: auto;
-    left: 34%;
-    top: 450px;
-    width: 300px;
-    height: 50px;
+    left: 38%;
+    top: 59%;
 }
