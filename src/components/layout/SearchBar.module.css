@@ -6,7 +6,11 @@
 .search {
   background: #ffffff;
   border-bottom: 2px solid #5793DB;
-  grid-column: 4 /span 6;
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  top: 15%;
+  height: 70%;
 }
 
 .search input {
@@ -17,9 +21,8 @@
   border-bottom-right-radius: 0px;
   font-size: 110%;
   padding: 1.4%;
-  height: 50%;
+  height: 100%;
   width: 100%;
-
 }
 
 .searchIcon {
@@ -37,7 +40,7 @@ input:focus {
 
 .dataResult {
   margin-top: 0.5%;
-  width: 50%;
+  width: 100%;
   position: absolute;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -57,7 +60,8 @@ input:focus {
 
 .dataItem p {
   margin-left: 1.5%;
-  margin-top: 2.5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .dataResult a {

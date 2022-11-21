@@ -27,8 +27,8 @@ function EditSchedule() {
                 {allDays()}
             </div>
         </div>,
-        <button className="smallScheduleBtn cancel" onClick={() => { if (window.confirm("You are about to discard unsaved changes. Are you sure you want to cancel?")) navigate("/user-planner", { replace: true }); }}>Cancel</button>,
-        <button className="smallScheduleBtn confirm" onClick={() => { navigate("/user-planner", { replace: true }); submit(); } }>Save</button>,
+        <button className="cancel" onClick={() => { if (window.confirm("You are about to discard unsaved changes. Are you sure you want to cancel?")) navigate("/user-planner", { replace: true }); }}>Cancel</button>,
+        <button className="confirm" onClick={() => { navigate("/user-planner", { replace: true }); submit(); } }>Save</button>,
         Legend()]
 }
 
@@ -38,23 +38,23 @@ function Legend() {
         <div className="LegendBody" style={{height: "100%"}}>
             <ul>
                 <li key="1">
-                    <div className="Entry">
-                        <p>Office</p> <div className="Box Hoverable" id="legend-box-1" onClick={(event) => select(event, 1)} style={{ backgroundColor: "var(--clrOffice)" }}></div>
+                    <div className="Office Hoverable" id="legend-box-1" onClick={(event) => select(event, 1)} style={{ backgroundColor: "var(--clrOffice)" }}>
+                        <p>Office</p>
                     </div>
                 </li>
                 <li key="2">
-                    <div className="Entry">
-                        <p>Home</p> <div className="Box Hoverable" id="legend-box-2" onClick={(event) => select(event, 2)} style={{ backgroundColor: "var(--clrHome)" }}></div>
+                    <div className="Home Hoverable" id="legend-box-2" onClick={(event) => select(event, 2)} style={{ backgroundColor: "var(--clrHome)" }}>
+                        <p>Home</p>
                     </div>
                 </li>
                 <li key="3">
-                    <div className="Entry">
-                        <p style={{ paddingTop: 30 }}>At Customer</p> <div className="Box Hoverable" id="legend-box-3" onClick={(event) => select(event, 3)} style={{ backgroundColor: "var(--clrCustomer)" }}></div>
+                    <div className="Customer Hoverable" id="legend-box-3" onClick={(event) => select(event, 3)} style={{ backgroundColor: "var(--clrCustomer)" }}>
+                        <p>Customer</p>
                     </div>
                 </li>
                 <li key="4">
-                    <div className="Entry">
-                        <p>None</p> <div className="Box Hoverable selectedBox" id="legend-box-0" onClick={(event) => select(event, 0)} style={{ backgroundColor: "var(--gray)" }}></div>
+                    <div className="None Hoverable" id="legend-box-0" onClick={(event) => select(event, 0)} style={{ backgroundColor: "var(--gray)" }}>
+                        <p>None</p>
                     </div>
                 </li>
             </ul>

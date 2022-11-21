@@ -3,17 +3,20 @@
 }
 
 .container{
-    width: calc(100% - 119px);
-    margin-left: 119px;
+    position: absolute;
+    width: 91.77%;
+    top: 15%;
+    margin-left: 8.23%;
 }
 
 .button{
     cursor: pointer;
-    position: relative;
-    width: 350px;
-    height: 67px;
-    left: 78%;
-    top: 25px;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    right: 0%;
+    top: 100%;
+    margin-left: 8.23%;
 
     color: #FFFFFF;
     background: #F8921E;

@@ -3,13 +3,17 @@ import EditSchedule from "../layout/planner/EditSchedule";
 
 function UserPlannerPage(props) {
   if (!props.editMode) {
-    return <div className="grid" style={{position: "relative", paddingTop: 15}}>
+    return (
+      <div>
         <Schedule></Schedule>
-      </div>;
+      </div>
+    );
   } else {
-    return <div className="grid" style={{position: "relative", paddingTop: 15}}>
+    return (
+      <div>
         <EditSchedule></EditSchedule>
-      </div>;
+      </div>
+    );
   }
 }
 
