@@ -6,8 +6,8 @@ import AskForLeavePage from "./components/pages/AskForLeave";
 import CallInSickPage from "./components/pages/CallInSick";
 import TeamPlannerPage from "./components/pages/TeamPlanner";
 import UserPlannerPage from "./components/pages/UserPlanner";
-import SingleManagmentPage from "./components/pages/singleManagment";
-import TeamManagmentPage from "./components/pages/teamManagment";
+import SingleManagmentPage from "./components/pages/SingleManagment";
+import TeamManagmentPage from "./components/pages/TeamManagment";
 import CreateUserPage from "./components/pages/CreateUser";
 
 import "./App.css";

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState ,useEffect } from "react";
 import { Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,25 +12,58 @@ import classes from "./singleManagment.module.css";
 import Trash from '../../assets/TrashIcon.png';
 
 
-function singleManagmentPage() {
+function SingleManagmentPage() {
+    const [werknemers, setWerknemers] = useState([]);
+  useEffect(() => {
+    getAllWerknemers();
+  }, []);
+
   const url = "/create-user";
-  function getAllWerknemers() {
+
+  async function getAllWerknemers() {
     try{
-      // const response = await fetch("http://localhost:5000/werknemers");
-      // const jsonData = await response.json();
-      // console.log(jsonData);
-      return [{id: 1, name: "test", email:"test@hotmail.com"},{id: 2, name: "test2", email:"uaifwn@hotmail.com"}, {id: 3, name: "test3", email:"fawwawww@hotmail.com"}
-      , {id: 4, name:"test4", email:"anjwf@hotmail.com"}];
+      const response = await fetch("http://localhost:8080/user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        accept: "application/json"
+      });
+      var result = await response.json();
+
+      console.log(result);
+      setWerknemers(result);
+      return result;
     } catch (err) {
       console.error(err.message);
     }
   }
+  
 
-  function deleteWerknemer(id){
-    alert("delete function: " + id);
+  async function deleteWerknemer(id){
+    var dialog = window.confirm("Weet je zeker dat je deze werknemer wilt verwijderen?");
+    if(dialog === true){
+      const response = await fetch("http://localhost:8080/user?" + new URLSearchParams({id: id}), {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        accept: "application/json"
+      });
+      console.log(response);
+      if(!response.ok){
+        alert("Er is iets fout gegaan, probeer het later opnieuw");
+        throw new Error(`Error! status: ${response.status}`);
+      }
+      else{
+        alert("Werknemer succesvol verwijderd");
+        window.location.reload();
+      }
+    }
+    else{
+      alert("Werknemer niet verwijderd");
+    }
   }
-
-  const werknemers = getAllWerknemers();
     return (
       <div className={classes.container}>
         <TableContainer component={Paper}>
@@ -62,4 +96,4 @@ function singleManagmentPage() {
     );
 }
   
-  export default singleManagmentPage;
+  export default SingleManagmentPage;

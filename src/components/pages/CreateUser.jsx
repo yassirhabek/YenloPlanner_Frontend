@@ -7,9 +7,25 @@ import BackButton from '../../assets/back.svg';
 
 function CreateUserPage(){
     function createUser(){
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        alert("create user: " + name + " " + email);
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var role = document.getElementById("role").value;
+        try {
+            let response = fetch("http://localhost:8080/user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: "Test",
+                        email: ""
+                    })
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <div className={classes.container}>
@@ -20,6 +36,7 @@ function CreateUserPage(){
             <div className={classes.header}>
                 <TextField id="name" label="Naam" variant="outlined" className={classes.name}/>
                 <TextField id="email" label="Email" variant="outlined" className={classes.email}/>
+                
                 <Button variant="contained" className={classes.submit} onClick={createUser}>Submit</Button>
             </div>
 
