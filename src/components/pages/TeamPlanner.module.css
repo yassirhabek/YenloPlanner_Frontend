@@ -8,18 +8,18 @@
 .week .arrowl {
   position: absolute;
   width: 5%;
-  left: 40.5%;
+  left: 35.9%;
 }
 
 .week .arrowr {
   position: absolute;
   width: 5%;
-  left: 62.8%;
+  left: 58.2%;
 }
 
 .week p {
   position: absolute;
-  left: 48.5%;
+  left: 43.9%;
 
   font-family: "Inter";
   font-style: normal;
@@ -37,7 +37,7 @@
   position: absolute;
   width: calc(100%);
   top: 25%;
-  left: 18.5%;
+  left: 13.9%;
   z-index: -1;
 }
 

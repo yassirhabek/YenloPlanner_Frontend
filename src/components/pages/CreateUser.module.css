@@ -1,59 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-.container{
-    width: calc(100% - 8.23%);
-    margin-left: 8.23%;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+.container {
+  width: calc(100% - 8.23%);
+  margin-left: 8.23%;
 }
 
-.name{
-    position: absolute;
-    width: 481px;
-    height: 60px;
-    left: 175px;
-    top: 235px;
+.name {
+  position: absolute;
+  width: 63%;
+  left: 20%;
+  top: 8%;
 }
 
-.email{
-    position: absolute;
-    width: 481px;
-    height: 60px;
-    left: 175px;
-    top: 320px;
+.email {
+  position: absolute;
+  width: 63%;
+  left: 20%;
+  top: 14%;
 }
-.header{
-    top: -40%;
-}
-
-.submit{
-    position: absolute;
-    width: 481px;
-    height: 67px;
-    left: 174px;
-    top: 420px;
+.header {
+  position: absolute;
+  top: 20%;
+  height: 50%;
+  width: 60%;
 }
 
-.info{
-    position: absolute;
-    width: 491px;
-    height: 72px;
-    left: 175px;
-    top: 560px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-
-    color: #181515;
+.submit {
+  position: absolute;
+  width: 63%;
+  height: 20%;
+  left: 20%;
+  top: 20%;
 }
 
-.backButton{
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 180px;
-    top: 149px;
-    cursor: pointer;
+.info {
+  position: absolute;
+  width: 40%;
+  height: 10%;
+  left: 20%;
+  top: 65%;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 120%;
+  line-height: 130%;
+  display: flex;
+  align-items: center;
+
+  color: #181515;
+}
+
+.backButton {
+  position: absolute;
+  width: 7.5%;
+  height: 7.5%;
+  left: 12.5%;
+  top: 25%;
+  z-index: 1;
+  cursor: pointer;
 }
