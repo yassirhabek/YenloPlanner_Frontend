@@ -13,8 +13,8 @@
 
 .daysTable {
   display: grid;
-  grid-template-rows: 0%;
-  grid-template-columns: 20%;
+  grid-template-rows: repeat(6,1fr);
+  grid-template-columns: repeat(5,1fr);
   position: absolute;
   top: 7.5%;
   width: 100%;
