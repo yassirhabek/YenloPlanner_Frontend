@@ -78,7 +78,7 @@ function allDays() {
     );
     if ((index + 1) % 5 === 0) {
       addDays += 3;
-    } else if ((index + 1) % 6 != 0 || (index + 1) % 7 != 0) addDays++;
+    } else if ((index + 1) % 6 !== 0 || (index + 1) % 7 !== 0) addDays++;
   }
 
   for (let i = 0; i < availabilityPairs.length; i++) {
@@ -114,9 +114,11 @@ function allDays() {
         break;
       }
 
-      if ((j + 1) % 5 === 0) {
-        addDays += 3;
-      } else if ((j + 1) % 6 != 0 || (j + 1) % 7 != 0) addDays++;
+            if ((j + 1) % 5 === 0) {
+                addDays += 3;
+            }
+            else if ((j + 1) % 6 !== 0 || (j + 1) % 7 !== 0) addDays++;
+        }
     }
   }
   return days;
@@ -232,10 +234,10 @@ function isSameDay(date1, date2) {
 }
 
 function firstIndex(date) {
-  const now = new Date(date);
-  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-  const day = firstDay.getDay();
-  let diff = firstDay.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
-  return new Date(now.setDate(diff));
+    const now = new Date(date);
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const day = firstDay.getDay();
+    let diff = firstDay.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(now.setDate(diff));
 }
 export default Schedule;

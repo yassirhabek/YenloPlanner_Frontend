@@ -67,6 +67,19 @@ function TitleBar() {
         />
       </header>
     );
+  } else if (location.pathname === "/team-manage"){
+    Titlebar = (
+      <header className={classes.header}>
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
+        <SearchBar placeholder="Search Team..." data={TeamData} className={classes.search} />
+        <img
+          src={Uitloggen}
+          alt="Uitloggen"
+          className={classes.logout}
+          onClick={logOutHandler}
+        />
+      </header>
+    );
   } else {
     Titlebar = (
       <header className={classes.header}>
