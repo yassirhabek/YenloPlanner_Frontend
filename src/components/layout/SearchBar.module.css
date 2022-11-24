@@ -53,6 +53,7 @@ input:focus {
   display: flex;
   align-items: center;
   color: black;
+  cursor: pointer;
 }
 
 .dataItem p {

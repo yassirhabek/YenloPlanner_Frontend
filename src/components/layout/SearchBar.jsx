@@ -9,13 +9,16 @@ function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
+  //value.name.indexOf("Project ") > -1
   function pickEmployeeHandler(value){
-    if(value.name.indexOf("Project ") > -1){
+    if(window.location.pathname === "/team-planner"){
       navigate("/team-planner", { replace: true, state: {teamId: value.id, name: value.name} });
-    }
-    else{
+    } else if(window.location.pathname === "/team-manage"){
+      navigate("/team-manage", { replace: true, state: {teamId: value.id, name: value.name} });
+    } else{
       alert(value.id + " - method to load agenda with user data.");
     }
+    clearInput();
   }
 
   const handleFilter = (event) => {
