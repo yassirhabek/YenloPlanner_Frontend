@@ -1,32 +1,32 @@
-import React from "react";
-import "./Schedule.css";
+import React, { useState } from "react";
+import './Schedule.css';
 import { useNavigate } from "react-router-dom";
+import { fontStyle, fontWeight } from "@mui/system";
+import { useEffect } from "react";
 
-var firstDate = firstIndex(new Date());
 function Schedule() {
-  const navigate = useNavigate();
-  return [
-    <div className="scheduleMain">
-      <h1 className="ScheduleHeader">← January →</h1>
-      <div class="daysTable">
-        <div class="dayNames"></div>
-        <p>Mo</p>
-        <p>Tu</p>
-        <p>We</p>
-        <p>Th</p>
-        <p>Fr</p>
-        {allDays()}
-      </div>
-    </div>,
-    <button
-      className="attendanceBtn"
-      onClick={() => navigate("./edit", { replace: true })}
-    >
-      Edit attendance
-    </button>,
-    Legend(),
-  ];
-}
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
+    const navigate = useNavigate();
+    useEffect(() => {
+        },[monthName]);
+    return [
+        <div className="scheduleMain">
+            <h1 className="ScheduleHeader"><a onClick={() => moveMonths(-1)}>←</a> {monthName} <a onClick={() => moveMonths(1)}>→</a> </h1>
+            <div class="daysTable">
+                
+                <div class="dayNames">
+                </div>
+                <p>Mo</p>
+                <p>Tu</p>
+                <p>We</p>
+                <p>Th</p>
+                <p>Fr</p>
+                {allDays()}
+            </div>
+        </div>,
+        <button className="attendanceBtn" onClick={() => navigate("./edit", { replace: true })}>Edit attendance</button>,
+        Legend()]
 
 function Legend() {
   return (
@@ -238,4 +238,6 @@ function firstIndex(date) {
   let diff = firstDay.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
   return new Date(now.setDate(diff));
 }
+
+
 export default Schedule;

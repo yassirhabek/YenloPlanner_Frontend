@@ -2,7 +2,7 @@ import React from "react";
 import './Schedule.css';
 import { useNavigate } from "react-router-dom";
 
-
+var firstDate = firstIndex(new Date());
 var selectedIndex = 0;
 function EditSchedule() {
     const navigate = useNavigate();
@@ -69,39 +69,59 @@ function submit() {
 function allDays() {
     const availabilityPairs = getUserData();
     let days = [];
+    let addDays = 0;
     for (let index = 0; index < 25; index++) {
-        days[index] = Day(index, 0, 0);
+        days[index] = Day(index, 0, 0, new Date(firstDate.getTime() + 86400000 * addDays));
+        if ((index + 1) % 5 === 0) {
+            addDays += 3;
+        }
+        else if ((index + 1) % 6 != 0 || (index + 1) % 7 != 0) addDays++;
     }
 
     for (let i = 0; i < availabilityPairs.length; i++) {
         const avaPair = availabilityPairs[i];
-        let n = findIndexByDate(avaPair[0].dateTime);
+        let n = findIndexByDate(avaPair[0].dateTime, days);
+        addDays = 0;
         for (let j = 0; j < 25; j++) {
+            console.log({j, n});
             if (j === n) {
                 if (avaPair[1] != null) {
-                    days[j] = Day(j, avaPair[0].status, avaPair[1].status);
+                    days[j] = Day(j, avaPair[0].status, avaPair[1].status, new Date(firstDate.getTime() + 86400000 * addDays));
                 }
                 else {
                     const ava = avaPair[0];
                     if (ava.beforeMidday)
-                        days[j] = Day(j, avaPair[0].status, 0);
-                    else 
-                    days[j] = Day(j, 0, avaPair[0].status);
+                        days[j] = Day(j, avaPair[0].status, 0, new Date(firstDate.getTime() + 86400000 * addDays));
+                    else
+                        days[j] = Day(j, 0, avaPair[0].status, new Date(firstDate.getTime() + 86400000 * addDays));
                 }
                 break;
             }
+
+            if ((j + 1) % 5 === 0) {
+                addDays += 3;
+            }
+            else if ((j + 1) % 6 != 0 || (j + 1) % 7 != 0) addDays++;
         }
     }
     return days;
 }
 
-function Day(index, morning, noon) {
-    return <div className="Index">
-        <p className="dateNum">99</p>
-        <div id={`morning-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }} className="Top">
+function Day(index, morning, noon, date) {
+    var topClass = "Top";
+    var bottomClass = "Bottom";
+    var textStyle = {};
+    if (isSameDay(date, Date.now())) {
+        topClass = "TopToday";
+        bottomClass = "BottomToday";
+        textStyle= {fontWeight:"bold"};
+    }
+    return <div className="Index" id={date.toISOString().split('T')[0]}>
+        <p className="dateNum" style={textStyle}>{date.getDate()}</p>
+        <div id={`morning-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }} className={topClass}>
             <span class="plannerTooltip">0 people in office</span>
         </div>
-        <div id={`midday-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }} className="Bottom">
+        <div id={`midday-${index}`} style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }} className={bottomClass}>
             <span class="plannerTooltip">0 people in office</span>
         </div>
     </div>;
@@ -165,13 +185,14 @@ function getUserData() {
     return result;
 }
 
-function fillPlannerWithDates() {
-    // TODO: have this fill every index of the planner page with the correct datetime.
-}
-
-function findIndexByDate(date) {
-    return Math.floor(Math.random() * 25);
-    // TODO: have this return the index in the planner based on the given date.
+function findIndexByDate(date, allDays) {
+    let res = -1;
+    allDays.forEach(d => {
+        if (d.props.id === (new Date(date).toISOString().split('T')[0])) {
+            res = Number(d.props.children[1].props.id.split('-')[1]);
+        }
+    });
+    return res;
 }
 
 function isSameDay(date1, date2) {
@@ -181,7 +202,15 @@ function isSameDay(date1, date2) {
         date1.getFullYear() === date2.getFullYear() &&
         date1.getMonth() === date2.getMonth() &&
         date1.getDate() === date2.getDate()
-      );
+    );
+}
+
+function firstIndex(date) {
+    const now = new Date(date);
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const day = firstDay.getDay();
+    let diff = firstDay.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(now.setDate(diff));
 }
 
 function setDate(event) {
