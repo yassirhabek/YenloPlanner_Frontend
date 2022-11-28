@@ -17,160 +17,55 @@ function TeamPlannerPage() {
   const [thursdayDate, setThursday] = useState("");
   const [fridayDate, setFriday] = useState("");
 
-  const Data = [
-    {
-      name: "W. Pluijm",
-      id: 1,
-      availabilities: [
-        { dateTime: mondayDate, status: 3, beforeMidday: true },
-        { dateTime: mondayDate, status: 3, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 3, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 2, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: false },
-        { dateTime: thursdayDate, status: 1, beforeMidday: true },
-        { dateTime: thursdayDate, status: 4, beforeMidday: false },
-        { dateTime: fridayDate, status: 4, beforeMidday: true },
-        { dateTime: fridayDate, status: 4, beforeMidday: false },
-      ],
-    },
-    {
-      name: "B. Bossink",
-      id: 2,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 1, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 3, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 2, beforeMidday: false },
-        { dateTime: thursdayDate, status: 5, beforeMidday: true },
-        { dateTime: thursdayDate, status: 2, beforeMidday: false },
-        { dateTime: fridayDate, status: 2, beforeMidday: true },
-        { dateTime: fridayDate, status: 0, beforeMidday: false },
-      ],
-    },
-    {
-      name: "J. Dalen",
-      id: 3,
-      availabilities: [
-        { dateTime: mondayDate, status: 5, beforeMidday: true },
-        { dateTime: mondayDate, status: 5, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 4, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 4, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 4, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 4, beforeMidday: false },
-        { dateTime: thursdayDate, status: 4, beforeMidday: true },
-        { dateTime: thursdayDate, status: 4, beforeMidday: false },
-        { dateTime: fridayDate, status: 2, beforeMidday: true },
-        { dateTime: fridayDate, status: 2, beforeMidday: false },
-      ],
-    },
-    {
-      name: "M. Broeders",
-      id: 4,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 1, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 1, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 1, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: false },
-        { dateTime: thursdayDate, status: 1, beforeMidday: true },
-        { dateTime: thursdayDate, status: 1, beforeMidday: false },
-        { dateTime: fridayDate, status: 3, beforeMidday: true },
-        { dateTime: fridayDate, status: 3, beforeMidday: false },
-      ],
-    },
-    {
-      name: "Y. Habek",
-      id: 5,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 2, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 1, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: false },
-        { dateTime: thursdayDate, status: 1, beforeMidday: true },
-        { dateTime: thursdayDate, status: 2, beforeMidday: false },
-        { dateTime: fridayDate, status: 2, beforeMidday: true },
-        { dateTime: fridayDate, status: 1, beforeMidday: false },
-      ],
-    },
-    {
-      name: "S. Wesseling",
-      id: 6,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 1, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: false },
-        { dateTime: thursdayDate, status: 1, beforeMidday: true },
-        { dateTime: thursdayDate, status: 2, beforeMidday: false },
-        { dateTime: fridayDate, status: 1, beforeMidday: true },
-        { dateTime: fridayDate, status: 2, beforeMidday: false },
-      ],
-    },
-    {
-      name: "D. Schol",
-      id: 7,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 1, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 1, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 1, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: false },
-        { dateTime: thursdayDate, status: 3, beforeMidday: true },
-        { dateTime: thursdayDate, status: 3, beforeMidday: false },
-        { dateTime: fridayDate, status: 3, beforeMidday: true },
-        { dateTime: fridayDate, status: 3, beforeMidday: false },
-      ],
-    },
-  ];
-
-  const Data2 = [
-    {
-      name: "R. Bouland",
-      id: 1,
-      availabilities: [
-        { dateTime: mondayDate, status: 3, beforeMidday: true },
-        { dateTime: mondayDate, status: 3, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 3, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 2, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 1, beforeMidday: false },
-        { dateTime: thursdayDate, status: 1, beforeMidday: true },
-        { dateTime: thursdayDate, status: 4, beforeMidday: false },
-        { dateTime: fridayDate, status: 4, beforeMidday: true },
-        { dateTime: fridayDate, status: 4, beforeMidday: false },
-      ],
-    },
-    {
-      name: "K. Veltman",
-      id: 2,
-      availabilities: [
-        { dateTime: mondayDate, status: 1, beforeMidday: true },
-        { dateTime: mondayDate, status: 1, beforeMidday: false },
-        { dateTime: tuesdayDate, status: 2, beforeMidday: true },
-        { dateTime: tuesdayDate, status: 3, beforeMidday: false },
-        { dateTime: wednesdayDate, status: 3, beforeMidday: true },
-        { dateTime: wednesdayDate, status: 2, beforeMidday: false },
-        { dateTime: thursdayDate, status: 5, beforeMidday: true },
-        { dateTime: thursdayDate, status: 2, beforeMidday: false },
-        { dateTime: fridayDate, status: 2, beforeMidday: true },
-        { dateTime: fridayDate, status: 0, beforeMidday: false },
-      ],
-    },
-  ];
+  function getAvailabilityTeam() {
+    const Data = [];
+    fetch(`http://localhost:8080/team/${location.state.teamId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      accept: "application/json",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        for (let user of data.user) {
+          fetch(
+            `http://localhost:8080/availability/week?date=${yearShown}/${getMonth(
+              mondayDate.slice(0, 4)
+            )}/${mondayDate.slice(4)}&user_id=${user.id}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              accept: "application/json",
+            }
+          )
+            .then((userresponse) => {
+              if (userresponse.status === 200) {
+                return userresponse.json();
+              }
+            })
+            .then((userdata) => {
+              Data.push(userdata);
+              setTeamData([...Data]);
+            });
+        }
+      });
+  }
 
   function initialLoad() {
     let weekNumber = currentWeek();
     let yearNumber = currentYear();
     firstDayOfWeek(weekNumber, yearNumber);
+  }
+
+  function getMonth(monthStr) {
+    return new Date(monthStr + "-1-01").getMonth() + 1;
   }
 
   function currentWeek() {
@@ -262,6 +157,7 @@ function TeamPlannerPage() {
     }
     setWeekShown(number);
     firstDayOfWeek(number, year);
+    getAvailabilityTeam();
   }
 
   function previousWeek() {
@@ -274,6 +170,7 @@ function TeamPlannerPage() {
     }
     setWeekShown(number);
     firstDayOfWeek(number, year);
+    getAvailabilityTeam();
   }
 
   function nextYear() {
@@ -286,25 +183,18 @@ function TeamPlannerPage() {
     setYearShown(number);
   }
 
-  function loadTeamData() {
-    if (location.state === null) {
-      setTeamData([]);
-    } else {
-      if(location.state.teamId === 2)
-      {
-        setTeamData(Data2);
-      }
-      else{
-        setTeamData(Data);
-      }
-    }
-  }
-
   useEffect(() => {
     initialLoad();
-    loadTeamData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state]);
+  },[]);
+
+  useEffect(() => {
+    if(location.state !== null){
+      getAvailabilityTeam();
+    }
+    window.history.replaceState(null, '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state, mondayDate]);
 
   if (location.state === null) {
     return (
@@ -332,7 +222,7 @@ function TeamPlannerPage() {
           dateWednesday={wednesdayDate}
           dateThursday={thursdayDate}
           dateFriday={fridayDate}
-          teamDataWeek={teamData}
+          teamDataWeek={[]}
         />
         <TeamLegend />
       </div>
@@ -342,7 +232,11 @@ function TeamPlannerPage() {
   return (
     <div>
       <div className={classes.teamname}>
-        <p><b><u>{location.state.name}</u></b></p>
+        <p>
+          <b>
+            <u>{location.state.name}</u>
+          </b>
+        </p>
       </div>
       <div className={classes.week}>
         <img

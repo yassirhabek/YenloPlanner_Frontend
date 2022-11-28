@@ -3,17 +3,17 @@ import classes from "./TeamScheduleItem.module.css";
 function TeamScheduleItem(props) {
   function DetermineColorStatus(status) {
     switch (status) {
-      case 0:
+      case "NIKS":
         return "var(--clrAway)";
-      case 1:
+      case "OFFICE":
         return "var(--clrOffice)";
-      case 2:
+      case "HOME":
         return "var(--clrHome)";
-      case 3:
+      case "CUSTOMER":
         return "var(--clrCustomer)";
-      case 4:
+      case "SICK":
         return "var(--clrSick)";
-      case 5:
+      case "LEAVE":
         return "var(--clrLeave)";
       default:
         return "var(--clrAway)";

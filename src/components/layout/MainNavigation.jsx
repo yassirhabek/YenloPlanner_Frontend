@@ -339,7 +339,7 @@ function MainNavigation() {
       </div>
     );
   }
-  return <div class="grid">{Navbar}</div>;
+  return <div className="grid">{Navbar}</div>;
 }
 
 export default MainNavigation;

@@ -9,7 +9,6 @@ function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
-  //value.name.indexOf("Project ") > -1
   function pickEmployeeHandler(value){
     if(window.location.pathname === "/team-planner"){
       navigate("/team-planner", { replace: true, state: {teamId: value.id, name: value.name} });

@@ -16,6 +16,7 @@ function TitleBar() {
   useEffect(() => {
     getAllWerknemers();
     getAllTeams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.pathname]);
 
   function logOutHandler() {
@@ -33,14 +34,13 @@ function TitleBar() {
       });
       var result = await response.json();
 
-      console.log(result);
       setWerknemers(result);
       return result;
     } catch (err) {
       console.error(err.message);
     }
   }
-  
+
   async function getAllTeams() {
     try {
       const response = await fetch("http://localhost:8080/team", {
@@ -52,7 +52,6 @@ function TitleBar() {
       });
       var result = await response.json();
 
-      console.log(result);
       setTeams(result);
       return result;
     } catch (err) {
@@ -60,17 +59,15 @@ function TitleBar() {
     }
   }
 
-  const TeamData = [
-    { name: "Project Fontys", id: 1 },
-    { name: "Project Planner", id: 2 },
-    { name: "Project Yenlo", id: 3 },
-  ];
-
   if (location.pathname === "/user-planner") {
     Titlebar = (
       <header className={classes.header}>
-        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
-        <SearchBar placeholder="Search Employee..." data={werknemers} className={classes.search}/>
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
+        <SearchBar
+          placeholder="Search Employee..."
+          data={werknemers}
+          className={classes.search}
+        />
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -82,8 +79,12 @@ function TitleBar() {
   } else if (location.pathname === "/user-planner/edit") {
     Titlebar = (
       <header className={classes.header}>
-        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
-        <SearchBar placeholder="Search Employee..." data={werknemers} className={classes.search}/>
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
+        <SearchBar
+          placeholder="Search Employee..."
+          data={werknemers}
+          className={classes.search}
+        />
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -92,12 +93,15 @@ function TitleBar() {
         />
       </header>
     );
-  }
-  else if (location.pathname === "/team-planner") {
+  } else if (location.pathname === "/team-planner") {
     Titlebar = (
       <header className={classes.header}>
-        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
-        <SearchBar placeholder="Search Team..." data={teams} className={classes.search} />
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
+        <SearchBar
+          placeholder="Search Team..."
+          data={teams}
+          className={classes.search}
+        />
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -106,11 +110,15 @@ function TitleBar() {
         />
       </header>
     );
-  } else if (location.pathname === "/team-manage"){
+  } else if (location.pathname === "/team-manage") {
     Titlebar = (
       <header className={classes.header}>
-        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
-        <SearchBar placeholder="Search Team..." data={teams} className={classes.search} />
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
+        <SearchBar
+          placeholder="Search Team..."
+          data={teams}
+          className={classes.search}
+        />
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -122,7 +130,7 @@ function TitleBar() {
   } else {
     Titlebar = (
       <header className={classes.header}>
-        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo}/>
+        <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
         <img
           src={Uitloggen}
           alt="Uitloggen"
