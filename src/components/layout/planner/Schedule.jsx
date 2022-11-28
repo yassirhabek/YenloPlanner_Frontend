@@ -16,7 +16,6 @@ function Schedule() {
         <a onClick={() => moveMonths(1)}>→</a>{" "}
       </h1>
       <div class="daysTable">
-        <div class="dayNames"></div>
         <p>Mo</p>
         <p>Tu</p>
         <p>We</p>

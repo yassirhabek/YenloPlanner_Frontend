@@ -40,7 +40,7 @@ function CallInSickPage() {
             disablePortal
             id="combo-box-demo"
             options={getAllProjectManagers()}
-            sx={{ width: 300, "& .MuiOutputBase-root": { width: "300px" } }}
+            sx={{ width: "341%" }}
             renderInput={(params) => (
               <TextField {...params} label="Project Managers" />
             )}
@@ -66,7 +66,7 @@ function CallInSickPage() {
             disablePortal
             id="combo-box-demo"
             options={getAllProjectManagers()}
-            sx={{ width: 300 }}
+            sx={{ width: "341%" }}
             renderInput={(params) => (
               <TextField {...params} label="Project Managers" />
             )}
@@ -86,7 +86,7 @@ function CallInSickPage() {
               id="reasonSick"
               label="Reason for Calling In Sick (Not Required)"
               variant="outlined"
-              sx={{ width: 385 }}
+              sx={{ width: "188%" }}
               multiline
               rows={3}
             />

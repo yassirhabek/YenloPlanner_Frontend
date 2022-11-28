@@ -12,132 +12,122 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function TeamManagment() {
   const location = useLocation();
   const [teamStatus, setTeamStatus] = useState(false);
-  const [werknemerId, setWerknemerId] = useState([]);
-  const [teamId, setTeamId] = useState([]);
-  const [members, setMembers] = useState([]);
+  const [werknemers, setWerknemers] = useState([]);
+  const [werknemerId, setWerknemerId] = useState();
+  const [teamId, setTeamId] = useState();
+  const [team, setTeam] = useState([]);
   const [lgShow, setLgShow] = useState(false);
   const [mgShow, setMgShow] = useState(false);
 
   useEffect(() => {
     if (location.state !== null) {
+      console.log(location.state);
       setTeamStatus(true);
       setTeamId(location.state.teamId);
       getTeamMembers(location.state.teamId);
+      getAllWerknemers();
     }
   }, [location.state]);
 
-  function getTeamMembers(Id) {
+  async function getTeamMembers(Id) {
     try {
-      if (Id !== null) {
-        setMembers([
-          {
-            id: 1,
-            name: "test",
-            email: "test@test.com",
+      const response = await fetch(
+        "http://localhost:8080/team/" + Id,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            id: 2,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 3,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 2,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 3,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 2,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 3,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 2,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 3,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 2,
-            name: "test",
-            email: "test@test.com",
-          },
-          {
-            id: 3,
-            name: "test",
-            email: "test@test.com",
-          },
-        ]);
-        console.log(Id);
-      }
+          accept: "application/json",
+        }
+      );
+      var result = await response.json();
+
+      console.log(result);
+      setTeam(result);
+      return result;
     } catch (error) {
       console.log(error);
     }
   }
 
-  function getAllWerknemers() {
+  async function getAllWerknemers() {
     try {
-      // const response = await fetch("http://localhost:5000/werknemers");
-      // const jsonData = await response.json();
-      // console.log(jsonData);
-      return [
-        { label: "Wim van der Pluijm", id: 1 },
-        { label: "Jane Doe", id: 2 },
-        { label: "Joe Doe", id: 3 },
-        { label: "Jill Doe", id: 4 },
-      ];
+      const response = await fetch("http://localhost:8080/user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        accept: "application/json",
+      });
+      var result = await response.json();
+      setWerknemers(result);
+      return result;
     } catch (err) {
       console.error(err.message);
     }
   }
 
-  function AddWerknemerToTeam() {
+  async function AddWerknemerToTeam() {
     try {
-      alert("add member to team function: " + werknemerId);
+      if(werknemerId === null || werknemerId === undefined){
+        alert("Please select a user.");
+        return;
+      }
+
+      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId: teamId, userId: werknemerId}), {
+        method: "POST"
+      });
+      
+      response.json !== null ? alert("User is added to the team") : alert("Critical error");
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   }
 
-  function deleteMemberFromTeam(id) {
+  async function deleteMemberFromTeam(id) {
     try {
-      alert("remove member from team function: " + id);
+      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId: teamId, userId: id}), {
+        method: "DELETE"
+      });
+      response.json !== null ? alert("User is deleted from the team") : alert("Critical error");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
   }
 
-  function deleteTeam() {
+  async function deleteTeam() {
     try {
-      alert("delete team function: " + teamId);
+      var answer = window.confirm("Are you sure you want to delete this team? (This action can not be undone)");
+      if (answer) {
+        const response = await fetch("http://localhost:8080/team?" + new URLSearchParams({teamId: teamId}), {
+          method: "DELETE"
+        });
+        response.json !== null ? alert("Team is deleted") : alert("Critical error");
+        var url = window.location.protocol + "//" + window.location.host + "/user-planner";
+        window.location.href = url;
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
-  function CreateTeam() {
+  async function CreateTeam() {
     try {
       var teamName = document.getElementById("teamName").value;
-      alert("create team function: " + teamName);
+      const response = await fetch("http://localhost:8080/team/add-team", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: teamName,
+        }),
+      });
+      response.json !== null ? alert("Team is created") : alert("Critical error");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -147,6 +137,7 @@ function TeamManagment() {
     <div>
       {teamStatus ? (
         <div className={classes.container}>
+          <h2>{location.state.name}</h2>
           <Table striped className={classes.tableTeam}>
             <thead>
               <tr>
@@ -172,7 +163,8 @@ function TeamManagment() {
                         disablePortal
                         id="combo-box"
                         onChange={(event, value) => setWerknemerId(value.id)}
-                        options={getAllWerknemers()}
+                        options={werknemers}
+                        getOptionLabel={(werknemer) => werknemer.name.toString()}
                         sx={{ width: 300 }}
                         renderInput={(params) => (
                           <TextField {...params} label="Werknemer" />
@@ -199,7 +191,7 @@ function TeamManagment() {
               </tr>
             </thead>
             <tbody>
-              {members === [] ? (
+              {team.user === [] ? (
                 <tr>
                   <td>Add a member to make changes.</td>
                   <td></td>
@@ -207,7 +199,7 @@ function TeamManagment() {
                   <td></td>
                 </tr>
               ) : (
-                members.map((member, index) => (
+                team.user?.map((member, index) => (
                   <tr key={index}>
                     <td>{member.id}</td>
                     <td>{member.name}</td>

@@ -40,7 +40,7 @@ function SingleManagmentPage() {
 
   async function deleteWerknemer(id) {
     var dialog = window.confirm(
-      "Weet je zeker dat je deze werknemer wilt verwijderen?"
+      "Are you sure you want to delete? (This action cannot be undone)"
     );
     if (dialog === true) {
       const response = await fetch(
@@ -55,14 +55,14 @@ function SingleManagmentPage() {
       );
       console.log(response);
       if (!response.ok) {
-        alert("Er is iets fout gegaan, probeer het later opnieuw");
+        alert("There is a critical error");
         throw new Error(`Error! status: ${response.status}`);
       } else {
-        alert("Werknemer succesvol verwijderd");
+        alert("Employee deleted");
         window.location.reload();
       }
     } else {
-      alert("Werknemer niet verwijderd");
+      alert("Employee not deleted");
     }
   }
   return (
