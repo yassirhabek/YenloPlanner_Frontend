@@ -40,7 +40,7 @@ function SingleManagmentPage() {
 
   async function deleteWerknemer(id) {
     var dialog = window.confirm(
-      "Are you sure you want to delete?"
+      "Are you sure you want to delete? (This action cannot be undone)"
     );
     if (dialog === true) {
       const response = await fetch(
