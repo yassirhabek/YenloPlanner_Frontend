@@ -6,7 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CallinSick.modules.css";
 
-const sickstatus = false;
+const sickstatus = true;
 
 function getAllProjectManagers() {
   // fetch("http://localhost:8080/projectmanagers")

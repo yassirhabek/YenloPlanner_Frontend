@@ -29,20 +29,17 @@
 .Hoverable:hover .plannerTooltip {
   visibility: visible;
   animation-name: show;
-  animation-duration: 2s;
-  background-color: var(--gray);
-  border-style: dashed;
-  border-width: 1px;
+  animation-duration: .1s;
+  position:fixed;
 }
 
 @keyframes show {
   from {
-    background-color: rgba(0, 0, 0, 0);
     color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
   }
 
   to {
-    background-color: var(--gray);
     color: var(--black);
   }
 }
