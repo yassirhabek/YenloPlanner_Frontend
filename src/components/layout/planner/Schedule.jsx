@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./Schedule.css";
 import { useNavigate } from "react-router-dom";
-import { fontStyle, fontWeight } from "@mui/system";
 import { useEffect } from "react";
 
 function Schedule() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
+  const [userAvailabilities, setAvailabilities] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {}, [monthName]);
+  useEffect(() => { getUserData() }, [monthName]);
   return [
     <div className="scheduleMain">
       <h1 className="ScheduleHeader">
@@ -26,7 +26,7 @@ function Schedule() {
     </div>,
     <button
       className="attendanceBtn"
-      onClick={() => navigate("./edit", { replace: true })}
+      onClick={() => navigate("./edit", { replace: true, state: { dateOfMonth: selectedDate } })}
     >
       Edit attendance
     </button>,
@@ -72,7 +72,7 @@ function Schedule() {
 
   function allDays() {
     var firstDate = firstIndex(selectedDate);
-    const availabilityPairs = getUserData();
+    const availabilityPairs = userAvailabilities;
     let days = [];
     let addDays = 0;
     for (let index = 0; index < 25; index++) {
@@ -179,6 +179,24 @@ function Schedule() {
     }
   }
 
+  function getStatus(dbName) {
+    switch (dbName) {
+      case "NIKS":
+        return 0;
+      case "OFFICE":
+        return 1;
+      case "HOME":
+        return 2;
+      case "CUSTOMER":
+        return 3;
+      case "SICK":
+        return 4;
+      case "LEAVE":
+        return 5;
+      default: return 0;
+    }
+  }
+
   function moveMonths(amount) {
     let newMonth = selectedDate.getMonth() + amount;
     let yearsToAdd = 0;
@@ -233,50 +251,43 @@ function Schedule() {
 
   function getUserData() {
     // retrieve data here:
-    let availabilities = [
-      {
-        beforeMidday: true,
-        dateTime: new Date("2022-11-03"),
-        status: 3,
-      },
-      {
-        beforeMidday: false,
-        dateTime: new Date("2022-11-03"),
-        status: 2,
-      },
-      {
-        beforeMidday: false,
-        dateTime: new Date("2022-11-08"),
-        status: 4,
-      },
-      {
-        beforeMidday: false,
-        dateTime: new Date("2022-10-31"),
-        status: 5,
-      },
-      {
-        beforeMidday: true,
-        dateTime: new Date("2022-12-12"),
-        status: 5,
-      },
-    ];
+    let from = firstIndex(selectedDate).toISOString().split('T')[0].replaceAll('-', '/');
+    let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32).toISOString().split('T')[0].replaceAll('-', '/');
 
-    // sort array
-    let result = [];
-    for (let i = 0; i < availabilities.length; i++) {
-      const ava = availabilities[i];
-      let newIndex = true;
-      for (let j = 0; j < result.length; j++) {
-        const resultAva = result[j];
-        if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
-          result[j] = [resultAva[0], ava];
-          newIndex = false;
-          break;
+    let id = 1;
+    let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        let availabilities = [];
+        data.availabilities.forEach(ava => {
+          availabilities.push({
+            beforeMidday: ava.beforeMidday,
+            dateTime: ava.dateTime,
+            status: getStatus(ava.status)
+          });
+        });
+
+        // sort array
+        let result = [];
+        for (let i = 0; i < availabilities.length; i++) {
+          const ava = availabilities[i];
+          let newIndex = true;
+          for (let j = 0; j < result.length; j++) {
+            const resultAva = result[j];
+            if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
+              result[j] = [resultAva[0], ava];
+              newIndex = false;
+              break;
+            }
+          }
+          if (newIndex) result.push([ava]);
         }
-      }
-      if (newIndex) result.push([ava]);
-    }
-    return result;
+        setAvailabilities(result);
+
+        console.log(userAvailabilities);
+      });
   }
 
   function findIndexByDate(date, allDays) {
