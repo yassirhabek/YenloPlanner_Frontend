@@ -10,6 +10,18 @@ function Schedule() {
   const navigate = useNavigate();
   useEffect(() => {
     getUserData();
+        
+    var tooltips = document.getElementsByClassName('plannerTooltip');
+    for (let i = 0; i < tooltips.length; i++) {
+        let tt = tooltips[i];
+        document.addEventListener("mousemove", function(e) {
+            let left = e.pageX;
+            let top = e.pageY;
+            tt.style.left = left + 'px';
+            tt.style.top = top + 'px';
+          });
+    }
+
   }, [monthName]);
   return [
     <div className="scheduleMain">
@@ -301,8 +313,6 @@ function Schedule() {
           if (newIndex) result.push([ava]);
         }
         setAvailabilities(result);
-
-        console.log(userAvailabilities);
       });
   }
 

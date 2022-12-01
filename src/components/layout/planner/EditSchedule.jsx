@@ -12,6 +12,17 @@ function EditSchedule() {
     const navigate = useNavigate();
     useEffect(() => {
         getUserData();
+        
+        var tooltips = document.getElementsByClassName('plannerTooltip');
+        for (let i = 0; i < tooltips.length; i++) {
+            let tt = tooltips[i];
+            document.addEventListener("mousemove", function(e) {
+                let left = e.pageX;
+                let top = e.pageY;
+                tt.style.left = left + 'px';
+                tt.style.top = top + 'px';
+              });
+        }
     }, [monthName]);
 
     setTimeout(function () {
@@ -20,6 +31,8 @@ function EditSchedule() {
             day.addEventListener("click", setDate, false);
         }
     }, 100);
+
+    
 
     return [
         <div className="scheduleMain">
@@ -60,58 +73,6 @@ function EditSchedule() {
     ];
 
     function Legend() {
-        return (
-            <div className="LegendMain">
-                <h1 className="LegendHeader">Select status</h1>
-                <div className="LegendBody" style={{ height: "100%" }}>
-                    <ul>
-                        <li key="1">
-                            <div
-                                className="Office Hoverable"
-                                id="legend-box-1"
-                                onClick={(event) => select(event, 1)}
-                                style={{ backgroundColor: "var(--clrOffice)" }}
-                            >
-                                <p>Office</p>
-                            </div>
-                        </li>
-                        <li key="2">
-                            <div
-                                className="Home Hoverable"
-                                id="legend-box-2"
-                                onClick={(event) => select(event, 2)}
-                                style={{ backgroundColor: "var(--clrHome)" }}
-                            >
-                                <p>Home</p>
-                            </div>
-                        </li>
-                        <li key="3">
-                            <div
-                                className="Customer Hoverable"
-                                id="legend-box-3"
-                                onClick={(event) => select(event, 3)}
-                                style={{ backgroundColor: "var(--clrCustomer)" }}
-                            >
-                                <p>Customer</p>
-                            </div>
-                        </li>
-                        <li key="4">
-                            <div
-                                className="None Hoverable"
-                                id="legend-box-0"
-                                onClick={(event) => select(event, 0)}
-                                style={{ backgroundColor: "var(--gray)" }}
-                            >
-                                <p>None</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        );
-    }
-
-    function Legend() {
         return (<div className="LegendMain">
             <h1 className="LegendHeader">Select status</h1>
             <div className="LegendBody" style={{ height: "100%" }}>
@@ -143,31 +104,57 @@ function EditSchedule() {
 
     function submit() {
         const dayParts = document.querySelectorAll('[id^="morning-"], [id^="midday-"]');
-        let attendances = [];
+        let putAttendance = [];
+        let postAttendance = [];
+        let deleteAttendance = [];
         const user = 1;
         dayParts.forEach(d => {
+            let morning = d.id.split('-')[0] === "morning";
             if (d.dataset.id != undefined) {
-                let morning = d.id.split('-')[0] === "morning";
-
-                attendances.push({
-                    id: Number(d.dataset.id),
+                if (d.dataset.status != "0"){
+                    putAttendance.push({
+                        id: Number(d.dataset.id),
+                        user: {
+                            id: user
+                        },
+                        beforeMidday: Number(morning),
+                        dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
+                        status: getDBName(Number(d.dataset.status))
+                    });
+                } else {
+                    deleteAttendance.push(Number(d.dataset.id));
+                }
+            } else {
+                if (d.dataset.status != "0") {
+                postAttendance.push({
                     user: {
                         id: user
                     },
                     beforeMidday: Number(morning),
                     dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
                     status: getDBName(Number(d.dataset.status))
-                });
+                });   
+                }
             }
         });
 
+        // put
         fetch(`http://localhost:8080/availability/update/month`, {
-            method: 'PUT', body: JSON.stringify(attendances),
+            method: 'PUT', body: JSON.stringify(putAttendance),
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => {
                 if (response.status === 200) {
-                    navigate("/user-planner", { replace: true });
+                    fetch(`http://localhost:8080/availability/add/week`, {
+                    method: 'POST', body: JSON.stringify(postAttendance),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            navigate("/user-planner", { replace: true });
+                        }
+                    }
+                    ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
                 }
             }
             ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
@@ -308,6 +295,8 @@ function EditSchedule() {
             </div>
         );
     }
+
+   
 
     function ColorByStatus(status) {
         switch (status) {
