@@ -111,7 +111,7 @@ function EditSchedule() {
         dayParts.forEach(d => {
             let morning = d.id.split('-')[0] === "morning";
             if (d.dataset.id != undefined) {
-                if (d.dataset.status != "0"){
+                if (/*d.dataset.status != "0"*/ true){
                     putAttendance.push({
                         id: Number(d.dataset.id),
                         user: {
