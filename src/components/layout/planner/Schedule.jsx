@@ -8,25 +8,34 @@ function Schedule() {
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
   const [userAvailabilities, setAvailabilities] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => { getUserData() }, [monthName]);
+  useEffect(() => {
+    getUserData();
+  }, [monthName]);
   return [
     <div className="scheduleMain">
       <h1 className="ScheduleHeader">
         <a onClick={() => moveMonths(-1)}>←</a> {monthName}{" "}
         <a onClick={() => moveMonths(1)}>→</a>{" "}
       </h1>
-      <div class="daysTable">
-        <p>Mo</p>
-        <p>Tu</p>
-        <p>We</p>
-        <p>Th</p>
-        <p>Fr</p>
-        {allDays()}
+      <div class="background">
+        <div class="daysTable">
+          <p>Mo</p>
+          <p>Tu</p>
+          <p>We</p>
+          <p>Th</p>
+          <p>Fr</p>
+          {allDays()}
+        </div>
       </div>
     </div>,
     <button
       className="attendanceBtn"
-      onClick={() => navigate("./edit", { replace: true, state: { dateOfMonth: selectedDate } })}
+      onClick={() =>
+        navigate("./edit", {
+          replace: true,
+          state: { dateOfMonth: selectedDate },
+        })
+      }
     >
       Edit attendance
     </button>,
@@ -193,7 +202,8 @@ function Schedule() {
         return 4;
       case "LEAVE":
         return 5;
-      default: return 0;
+      default:
+        return 0;
     }
   }
 
@@ -251,21 +261,27 @@ function Schedule() {
 
   function getUserData() {
     // retrieve data here:
-    let from = firstIndex(selectedDate).toISOString().split('T')[0].replaceAll('-', '/');
-    let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32).toISOString().split('T')[0].replaceAll('-', '/');
+    let from = firstIndex(selectedDate)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
+    let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
 
     let id = 1;
     let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         let availabilities = [];
-        data.availabilities.forEach(ava => {
+        data.availabilities.forEach((ava) => {
           availabilities.push({
             beforeMidday: ava.beforeMidday,
             dateTime: ava.dateTime,
-            status: getStatus(ava.status)
+            status: getStatus(ava.status),
           });
         });
 
