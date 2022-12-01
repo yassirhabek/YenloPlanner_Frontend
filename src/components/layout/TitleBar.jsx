@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 import classes from "./TitleBar.module.css";
 import SearchBar from "./SearchBar";
-import YenloLogo from "../../assets/YenloLogo.PNG";
+import YenloLogo from "../../assets/logo.svg";
 import Uitloggen from "../../assets/Uitloggen.PNG";
 import { useEffect, useState } from "react";
 
