@@ -1,5 +1,5 @@
-import React, { useState }  from "react";
-import './Schedule.css';
+import React, { useState } from "react";
+import "./Schedule.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -23,23 +23,93 @@ function EditSchedule() {
 
     return [
         <div className="scheduleMain">
-            <h1 className="ScheduleHeader">{monthName}{" "}
-                </h1>
-            <div class="daysTable">
-                <div class="dayNames">
+            <h1 className="ScheduleHeader">{monthName} </h1>
+            <div class="background">
+                <div class="daysTable">
+                    <p>Mo</p>
+                    <p>Tu</p>
+                    <p>We</p>
+                    <p>Th</p>
+                    <p>Fr</p>
+                    {allDays()}
                 </div>
-                <p>Mo</p>
-                <p>Tu</p>
-                <p>We</p>
-                <p>Th</p>
-                <p>Fr</p>
-                {allDays()}
             </div>
         </div>,
-        <button className="cancel" onClick={() => { if (window.confirm("You are about to discard unsaved changes. Are you sure you want to cancel?")) navigate("/user-planner", { replace: true }); }}>Cancel</button>,
-        <button className="confirm" onClick={() => { submit(); }}>Save</button>,
-        Legend()]
+        <button
+            className="cancel"
+            onClick={() => {
+                if (
+                    window.confirm(
+                        "You are about to discard unsaved changes. Are you sure you want to cancel?"
+                    )
+                )
+                    navigate("/user-planner", { replace: true });
+            }}
+        >
+            Cancel
+        </button>,
+        <button
+            className="confirm"
+            onClick={() => {
+                submit();
+            }}
+        >
+            Save
+        </button>,
+        Legend(),
+    ];
 
+    function Legend() {
+        return (
+            <div className="LegendMain">
+                <h1 className="LegendHeader">Select status</h1>
+                <div className="LegendBody" style={{ height: "100%" }}>
+                    <ul>
+                        <li key="1">
+                            <div
+                                className="Office Hoverable"
+                                id="legend-box-1"
+                                onClick={(event) => select(event, 1)}
+                                style={{ backgroundColor: "var(--clrOffice)" }}
+                            >
+                                <p>Office</p>
+                            </div>
+                        </li>
+                        <li key="2">
+                            <div
+                                className="Home Hoverable"
+                                id="legend-box-2"
+                                onClick={(event) => select(event, 2)}
+                                style={{ backgroundColor: "var(--clrHome)" }}
+                            >
+                                <p>Home</p>
+                            </div>
+                        </li>
+                        <li key="3">
+                            <div
+                                className="Customer Hoverable"
+                                id="legend-box-3"
+                                onClick={(event) => select(event, 3)}
+                                style={{ backgroundColor: "var(--clrCustomer)" }}
+                            >
+                                <p>Customer</p>
+                            </div>
+                        </li>
+                        <li key="4">
+                            <div
+                                className="None Hoverable"
+                                id="legend-box-0"
+                                onClick={(event) => select(event, 0)}
+                                style={{ backgroundColor: "var(--gray)" }}
+                            >
+                                <p>None</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
 
     function Legend() {
         return (<div className="LegendMain">
@@ -78,7 +148,7 @@ function EditSchedule() {
         dayParts.forEach(d => {
             if (d.dataset.id != undefined) {
                 let morning = d.id.split('-')[0] === "morning";
-                
+
                 attendances.push({
                     id: Number(d.dataset.id),
                     user: {
@@ -91,44 +161,51 @@ function EditSchedule() {
             }
         });
 
-        console.log(JSON.stringify(attendances));
         fetch(`http://localhost:8080/availability/update/month`, {
-            method: 'PUT', body: JSON.stringify(attendances), 
+            method: 'PUT', body: JSON.stringify(attendances),
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => {
-            if (response.status === 200) {
-            navigate("/user-planner", { replace: true });
-        }}
-    ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
-
+            .then(response => {
+                if (response.status === 200) {
+                    navigate("/user-planner", { replace: true });
+                }
+            }
+            ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
     }
 
     function setDate(event) {
         var clickedElement = document.getElementById(event.currentTarget.id);
 
-        if (clickedElement.dataset.status === "4" || clickedElement.dataset.status === "5") {
-            alert("You are marked as '" + `${StatusToText(Number(clickedElement.dataset.status))}` + "' at this time. This status cannot be overriden.");
+        if (
+            clickedElement.dataset.status === "4" ||
+            clickedElement.dataset.status === "5"
+        ) {
+            alert(
+                "You are marked as '" +
+                `${StatusToText(Number(clickedElement.dataset.status))}` +
+                "' at this time. This status cannot be overriden."
+            );
             return;
         }
 
         const date = clickedElement.parentElement.id;
-        const morning = (clickedElement.id.split("-")[0] === "morning");
+        const morning = clickedElement.id.split("-")[0] === "morning";
         const status = selectedIndex;
-        
+
         clickedElement.dataset.status = selectedIndex;
-        clickedElement.style.backgroundColor = `var(--${ColorByStatus(selectedIndex)})`;
+        clickedElement.style.backgroundColor = `var(--${ColorByStatus(
+            selectedIndex
+        )})`;
     }
 
     function select(e, index) {
-        var prevSelection = document.getElementById("legend-box-" + selectedIndex)
+        var prevSelection = document.getElementById("legend-box-" + selectedIndex);
         var clickedElement = document.getElementById(e.currentTarget.id);
 
-        if (prevSelection != null)
-            prevSelection.classList.remove("selectedBox");
+        if (prevSelection != null) prevSelection.classList.remove("selectedBox");
 
-        clickedElement.classList.add("selectedBox")
-        
+        clickedElement.classList.add("selectedBox");
+
         selectedIndex = index;
     }
 
@@ -211,14 +288,18 @@ function EditSchedule() {
                     {date.getDate()}
                 </p>
                 <div
-                    id={`morning-${index}`} data-status={morning} data-id={id1}
+                    id={`morning-${index}`}
+                    data-status={morning}
+                    data-id={id1}
                     style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
                     className={topClass}
                 >
                     <span class="plannerTooltip">0 people in office</span>
                 </div>
                 <div
-                    id={`midday-${index}`} data-status={noon} data-id={id2}
+                    id={`midday-${index}`}
+                    data-status={noon}
+                    data-id={id2}
                     style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
                     className={bottomClass}
                 >
@@ -320,44 +401,50 @@ function EditSchedule() {
 
     function getUserData() {
         // retrieve data here:
-        let from = firstIndex(selectedDate).toISOString().split('T')[0].replaceAll('-', '/');
-        let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32).toISOString().split('T')[0].replaceAll('-', '/');
-    
+        let from = firstIndex(selectedDate)
+            .toISOString()
+            .split("T")[0]
+            .replaceAll("-", "/");
+        let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32)
+            .toISOString()
+            .split("T")[0]
+            .replaceAll("-", "/");
+
         let id = 1;
         let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
-    
+
         fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            let availabilities = [];
-            data.availabilities.forEach(ava => {
-              availabilities.push({
-                id: ava.id,
-                beforeMidday: ava.beforeMidday,
-                dateTime: ava.dateTime,
-                status: getStatus(ava.status)
-              });
-            });
-    
-            // sort array
-            let result = [];
-            for (let i = 0; i < availabilities.length; i++) {
-              const ava = availabilities[i];
-              let newIndex = true;
-              for (let j = 0; j < result.length; j++) {
-                const resultAva = result[j];
-                if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
-                  result[j] = [resultAva[0], ava];
-                  newIndex = false;
-                  break;
+            .then((response) => response.json())
+            .then((data) => {
+                let availabilities = [];
+                data.availabilities.forEach((ava) => {
+                    availabilities.push({
+                        id: ava.id,
+                        beforeMidday: ava.beforeMidday,
+                        dateTime: ava.dateTime,
+                        status: getStatus(ava.status),
+                    });
+                });
+
+                // sort array
+                let result = [];
+                for (let i = 0; i < availabilities.length; i++) {
+                    const ava = availabilities[i];
+                    let newIndex = true;
+                    for (let j = 0; j < result.length; j++) {
+                        const resultAva = result[j];
+                        if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
+                            result[j] = [resultAva[0], ava];
+                            newIndex = false;
+                            break;
+                        }
+                    }
+                    if (newIndex) result.push([ava]);
                 }
-              }
-              if (newIndex) result.push([ava]);
-            }
-            setAvailabilities(result);
-          });
-      }
-    
+                setAvailabilities(result);
+            });
+    }
+
     function findIndexByDate(date, allDays) {
         let res = -1;
         allDays.forEach((d) => {
@@ -387,39 +474,57 @@ function EditSchedule() {
     }
     function getStatus(dbName) {
         switch (dbName) {
-          case "NIKS":
-            return 0;
-          case "OFFICE":
-            return 1;
-          case "HOME":
-            return 2;
-          case "CUSTOMER":
-            return 3;
-          case "SICK":
-            return 4;
-          case "LEAVE":
-            return 5;
-          default: return 0;
+            case "NIKS":
+                return 0;
+            case "OFFICE":
+                return 1;
+            case "HOME":
+                return 2;
+            case "CUSTOMER":
+                return 3;
+            case "SICK":
+                return 4;
+            case "LEAVE":
+                return 5;
+            default:
+                return 0;
         }
-      }
+    }
+    function getStatus(dbName) {
+        switch (dbName) {
+            case "NIKS":
+                return 0;
+            case "OFFICE":
+                return 1;
+            case "HOME":
+                return 2;
+            case "CUSTOMER":
+                return 3;
+            case "SICK":
+                return 4;
+            case "LEAVE":
+                return 5;
+            default: return 0;
+        }
+    }
 
     function getDBName(status) {
-        switch( status ) {
+        switch (status) {
             case 0:
-              return "NIKS";
+                return "NIKS";
             case 1:
-              return "OFFICE";
+                return "OFFICE";
             case 2:
-              return "HOME";
+                return "HOME";
             case 3:
-              return "CUSTOMER";
+                return "CUSTOMER";
             case 4:
-              return "SICK";
+                return "SICK";
             case 5:
-              return "LEAVE";
+                return "LEAVE";
             default: return 0;
         }
     }
 }
 
-export default EditSchedule;
+export default EditSchedule
