@@ -78,21 +78,22 @@ function EditSchedule() {
         dayParts.forEach(d => {
             if (d.dataset.id != undefined) {
                 let morning = d.id.split('-')[0] === "morning";
+                
                 attendances.push({
+                    id: Number(d.dataset.id),
                     user: {
                         id: user
                     },
-                    id: d.dataset.id,
-                    beforeMidday: morning,
-                    dateTime: new Date(d.parentElement.id),
-                    status: d.dataset.status
+                    beforeMidday: Number(morning),
+                    dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
+                    status: getDBName(Number(d.dataset.status))
                 });
             }
         });
 
-        const id = 1;
-        fetch(`http://localhost:8080/availability/add/month`, {
-            method: 'PUT', body: attendances, 
+        console.log(JSON.stringify(attendances));
+        fetch(`http://localhost:8080/availability/update/month`, {
+            method: 'PUT', body: JSON.stringify(attendances), 
             headers: { 'Content-Type': 'application/json' }
         })
         .then(response => {
@@ -401,7 +402,24 @@ function EditSchedule() {
           default: return 0;
         }
       }
-}
 
+    function getDBName(status) {
+        switch( status ) {
+            case 0:
+              return "NIKS";
+            case 1:
+              return "OFFICE";
+            case 2:
+              return "HOME";
+            case 3:
+              return "CUSTOMER";
+            case 4:
+              return "SICK";
+            case 5:
+              return "LEAVE";
+            default: return 0;
+        }
+    }
+}
 
 export default EditSchedule;

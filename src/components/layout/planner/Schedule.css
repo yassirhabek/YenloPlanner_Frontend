@@ -26,6 +26,8 @@
 
 .Top:hover .plannerTooltip,
 .Bottom:hover .plannerTooltip,
+.TopToday:hover .plannerTooltip,
+.BottomToday:hover .plannerTooltip,
 .Hoverable:hover .plannerTooltip {
   visibility: visible;
   animation-name: show;
