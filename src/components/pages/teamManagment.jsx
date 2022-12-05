@@ -117,6 +117,12 @@ function TeamManagment() {
   async function CreateTeam() {
     try {
       var teamName = document.getElementById("teamName").value;
+      
+      if (teamName === null || teamName === undefined || teamName === "") {
+        alert("Please enter a team name.");
+        return;
+      }
+
       const response = await fetch("http://localhost:8080/team/add-team", {
         method: "POST",
         headers: {
@@ -135,7 +141,7 @@ function TeamManagment() {
 
   return (
     <div>
-      {teamStatus ? (
+      {location.state !== null ? (
         <div className={classes.container}>
           <h2>{location.state.name}</h2>
           <Table striped className={classes.tableTeam}>
@@ -191,15 +197,7 @@ function TeamManagment() {
               </tr>
             </thead>
             <tbody>
-              {team.user === [] ? (
-                <tr>
-                  <td>Add a member to make changes.</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              ) : (
-                team.user?.map((member, index) => (
+              { team.user?.map((member, index) => (
                   <tr key={index}>
                     <td>{member.id}</td>
                     <td>{member.name}</td>
@@ -213,14 +211,15 @@ function TeamManagment() {
                       </Button>
                     </td>
                   </tr>
-                ))
-              )}
+                ))}
             </tbody>
           </Table>
-        </div>
-      ) : (
-        <h2>Select a Team to start.</h2>
-      )}
+        </div>) : (
+        <div className={classes.container}>
+          <h3>Select a team in the searchbar</h3>
+          <h3>Or create a new team</h3>
+        </div>)}
+        
       <button className={classes.button} onClick={() => setMgShow(true)}>
         Create New Team
       </button>

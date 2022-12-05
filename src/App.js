@@ -9,6 +9,7 @@ import UserPlannerPage from "./components/pages/UserPlanner";
 import SingleManagmentPage from "./components/pages/singleManagment";
 import TeamManagmentPage from "./components/pages/teamManagment";
 import CreateUserPage from "./components/pages/CreateUser";
+import LoginPage from "./components/pages/Login";
 
 import "./App.css";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/single-manage" element={<SingleManagmentPage />} />
         <Route path="/team-manage" element={<TeamManagmentPage />} />
         <Route path="/create-user" element={<CreateUserPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       
     </div>

@@ -14,6 +14,8 @@ function SearchBar({ placeholder, data }) {
       navigate("/team-planner", { replace: true, state: {teamId: value.id, name: value.name} });
     } else if(window.location.pathname === "/team-manage"){
       navigate("/team-manage", { replace: true, state: {teamId: value.id, name: value.name} });
+    } else if(window.location.pathname === "/single-manage"){
+      navigate("/single-manage", { replace: true, state: {werknemerId: value.id, name: value.name} });
     } else{
       alert(value.id + " - method to load agenda with user data.");
     }
