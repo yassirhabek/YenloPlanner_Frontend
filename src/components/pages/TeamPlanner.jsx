@@ -157,7 +157,6 @@ function TeamPlannerPage() {
     }
     setWeekShown(number);
     firstDayOfWeek(number, year);
-    getAvailabilityTeam();
   }
 
   function previousWeek() {
@@ -170,7 +169,6 @@ function TeamPlannerPage() {
     }
     setWeekShown(number);
     firstDayOfWeek(number, year);
-    getAvailabilityTeam();
   }
 
   function nextYear() {
