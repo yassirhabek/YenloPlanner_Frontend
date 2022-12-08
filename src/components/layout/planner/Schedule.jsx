@@ -29,8 +29,8 @@ function Schedule() {
         <a onClick={() => moveMonths(-1)}>←</a> {monthName}{" "}
         <a onClick={() => moveMonths(1)}>→</a>{" "}
       </h1>
-      <div class="background">
-        <div class="daysTable">
+      <div className="background">
+        <div className="daysTable">
           <p>Mo</p>
           <p>Tu</p>
           <p>We</p>
@@ -168,14 +168,14 @@ function Schedule() {
           style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
           className={topClass}
         >
-          <span class="plannerTooltip">0 people in office</span>
+          <span className="plannerTooltip">0 people in office</span>
         </div>
         <div
           id={`midday-${index}`}
           style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
           className={bottomClass}
         >
-          <span class="plannerTooltip">0 people in office</span>
+          <span className="plannerTooltip">0 people in office</span>
         </div>
       </div>
     );
