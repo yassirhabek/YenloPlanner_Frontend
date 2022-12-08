@@ -36,12 +36,23 @@ function CallInSickPage() {
     }
   }
 
+  function changeSickStatus(value) {
+    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=1`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => {
+      if (response.status === 200) {
+        setSickStatus(value);
+      }
+    });
+  }
+
   function callSick() {
-    setSickStatus(true);
+    changeSickStatus(1);
   }
 
   function callBetter() {
-    setSickStatus(false);
+    changeSickStatus(0);
   }
 
   if (sickStatus) {
@@ -53,7 +64,7 @@ function CallInSickPage() {
         <div className="projectmanagerInput">
           <select name="managers" id="managers">
             {managers.map((manager) => {
-              return <option value={manager.label}>{manager.label}</option>;
+              return <option value={manager.label} key={manager.id}>{manager.label}</option>;
             })}
           </select>
         </div>
@@ -75,7 +86,7 @@ function CallInSickPage() {
         <div className="projectmanagerInput">
           <select name="managers" id="managers">
             {managers.map((manager) => {
-              return <option value={manager.label}>{manager.label}</option>;
+              return <option value={manager.label} key={manager.id}>{manager.label}</option>;
             })}
           </select>
         </div>

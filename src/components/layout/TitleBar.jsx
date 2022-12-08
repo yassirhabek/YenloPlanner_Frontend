@@ -92,24 +92,7 @@ function TitleBar() {
           onClick={logOutHandler}
         />
       </header>
-    );} 
-    else if (location.pathname === "/single-manage") {
-      Titlebar = (
-        <header className={classes.header}>
-          <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
-          <SearchBar
-            placeholder="Search Employee..."
-            data={werknemers}
-            className={classes.search}
-          />
-          <img
-            src={Uitloggen}
-            alt="Uitloggen"
-            className={classes.logout}
-            onClick={logOutHandler}
-          />
-        </header>
-      );
+    );
   } else if (location.pathname === "/team-planner") {
     Titlebar = (
       <header className={classes.header}>
@@ -145,9 +128,9 @@ function TitleBar() {
       </header>
     );
   } else if (location.pathname === "/login") {
-    Titlebar = ( <div /> );
-  }   
-  else { Titlebar = (
+    Titlebar = <div />;
+  } else {
+    Titlebar = (
       <header className={classes.header}>
         <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
         <img
