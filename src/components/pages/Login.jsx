@@ -33,12 +33,33 @@ const theme = createTheme();
 
 function Login() {
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    var email = data.get('email');
+    var username = data.get('username');
     var password = data.get('password');
-    console.log(email, password);
+    console.log(username, password);
+
+    const response = await fetch('http://localhost:8080/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+
+      document.cookie = 'token=' + result.accessToken;
+      window.location.href = '/user-planner';
+    } else {
+      alert('Login failed');
+    }
   };
 
   return (
@@ -60,10 +81,10 @@ function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
