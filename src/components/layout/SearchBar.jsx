@@ -20,6 +20,11 @@ function SearchBar({ placeholder, data }) {
         replace: true,
         state: { teamId: value.id, name: value.name },
       });
+    } else if (window.location.pathname === "/user-planner") {
+      navigate("/user-planner", {
+        replace: true,
+        state: { user: {id: value.id, name: value.name}},
+      });
     } else {
       alert(value.id + " - method to load agenda with user data.");
     }

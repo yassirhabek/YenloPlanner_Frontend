@@ -393,3 +393,13 @@ li {
 
   color: #000000;
 }
+
+.UserInfo {
+  font-size: 1.3em;
+  position: absolute;
+  width: 19.7%;
+  height: 10%;
+  top: 13.0%;
+  left: 70.5%;
+  z-index: -1;
+}

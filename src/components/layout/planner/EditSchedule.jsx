@@ -59,7 +59,7 @@ function EditSchedule() {
                         "You are about to discard unsaved changes. Are you sure you want to cancel?"
                     )
                 )
-                    navigate("/user-planner", { replace: true });
+                    navigate("/user-planner", { replace: true, state: {user: location.state.user}});
             }}
         >
             Cancel
@@ -110,7 +110,7 @@ function EditSchedule() {
         let putAttendance = [];
         let postAttendance = [];
         let deleteAttendance = [];
-        const user = 3;
+        const user = location.state.user.id;
         dayParts.forEach(d => {
             let morning = d.id.split('-')[0] === "morning";
             if (d.dataset.id != undefined) {
@@ -154,7 +154,7 @@ function EditSchedule() {
                     })
                         .then(response => {
                             if (response.status === 200) {
-                                navigate("/user-planner", { replace: true });
+                                navigate("/user-planner", { replace: true, state: {user: location.state.user} });
                             }
                         }
                         ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
@@ -312,7 +312,7 @@ function EditSchedule() {
                     style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
                     className={topClass}
                 >
-                    <span class="plannerTooltip">{inOfficeT} people in office</span>
+                    <span class="plannerTooltip">{inOfficeT} {inOfficeT != 1 ? 'people' : 'person'}  in office</span>
                 </div>
                 <div onContextMenu={rightClick}
                     id={`midday-${index}`}
@@ -321,7 +321,7 @@ function EditSchedule() {
                     style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
                     className={bottomClass}
                 >
-                    <span class="plannerTooltip">{inOfficeB} people in office</span>
+                    <span class="plannerTooltip">{inOfficeB} {inOfficeB != 1 ? 'people' : 'person'}  in office</span>
                 </div>
             </div>
         );
@@ -428,7 +428,7 @@ function EditSchedule() {
             .split("T")[0]
             .replaceAll("-", "/");
 
-        let id = 3;
+        let id = location.state.user.id;
         let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
 
         fetch(url)
