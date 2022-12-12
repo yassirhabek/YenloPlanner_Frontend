@@ -127,6 +127,8 @@ function TitleBar() {
         />
       </header>
     );
+  } else if (location.pathname === "/login") {
+    Titlebar = <div />;
   } else {
     Titlebar = (
       <header className={classes.header}>

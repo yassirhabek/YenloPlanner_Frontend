@@ -30,8 +30,8 @@ function Schedule() {
         <a onClick={() => moveMonths(-1)}>←</a> {monthName}{" "}
         <a onClick={() => moveMonths(1)}>→</a>{" "}
       </h1>
-      <div class="background">
-        <div class="daysTable">
+      <div className="background">
+        <div className="daysTable">
           <p>Mo</p>
           <p>Tu</p>
           <p>We</p>

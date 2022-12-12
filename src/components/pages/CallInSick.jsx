@@ -1,56 +1,78 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-//import Button from '@mui/material/Button';
+import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CallinSick.modules.css";
 
-const sickstatus = true;
-
-function getAllProjectManagers() {
-  // fetch("http://localhost:8080/projectmanagers")
-  // .then((response) => response.json())
-  // .then((data) => data);
-  return [
-    { label: "Wim van der Pluijm", id: 1 },
-    { label: "Jane Doe", id: 2 },
-    { label: "Joe Doe", id: 3 },
-    { label: "Jill Doe", id: 4 },
-  ];
-}
-
-function callSick() {
-  alert("Functionality not yet implemented for calling in sick");
-}
-
-function callBetter() {
-  alert("Functionality not yet implemented for calling in better");
-}
-
 function CallInSickPage() {
-  if (sickstatus === true) {
+  const [sickStatus, setSickStatus] = useState(false);
+  const [managers, setBeschikbareManagers] = useState([]);
+
+  useEffect(() => {
+    getAllProjectManagers();
+  }, []);
+
+  async function getAllProjectManagers() {
+    const ManagerOptions = [];
+    try {
+      const response = await fetch("http://localhost:8080/user/managers", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        accept: "application/json",
+      });
+      var result = await response.json();
+
+      result.map((value) => {
+        const object = { label: value.name, id: value.id };
+        ManagerOptions.push(object);
+      });
+
+      setBeschikbareManagers(ManagerOptions);
+      return result;
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  function changeSickStatus(value) {
+    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=1`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => {
+      if (response.status === 200) {
+        setSickStatus(value);
+      }
+    });
+  }
+
+  function callSick() {
+    changeSickStatus(1);
+  }
+
+  function callBetter() {
+    changeSickStatus(0);
+  }
+
+  if (sickStatus) {
     return (
-      <div className="container">
+      <div>
         <p className="label">
           <i>You are currently marked sick.</i>
         </p>
         <div className="projectmanagerInput">
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={getAllProjectManagers()}
-            sx={{ width: "341%" }}
-            renderInput={(params) => (
-              <TextField {...params} label="Project Managers" />
-            )}
-          />
+          <select name="managers" id="managers">
+            {managers.map((manager) => {
+              return <option value={manager.label} key={manager.id}>{manager.label}</option>;
+            })}
+          </select>
         </div>
 
         <div className="sickstatusInput">
           <button
             type="button"
-            class="buttonsick btn btn-success"
+            className="buttonsick btn btn-success"
             onClick={callBetter}
           >
             Call In Better
@@ -60,40 +82,33 @@ function CallInSickPage() {
     );
   } else {
     return (
-      <div className="container">
+      <div>
         <div className="projectmanagerInput">
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={getAllProjectManagers()}
-            sx={{ width: "341%" }}
-            renderInput={(params) => (
-              <TextField {...params} label="Project Managers" />
-            )}
-          />
+          <select name="managers" id="managers">
+            {managers.map((manager) => {
+              return <option value={manager.label} key={manager.id}>{manager.label}</option>;
+            })}
+          </select>
         </div>
 
         <div>
+          <div className="inputsick">
+            <textarea
+              rows={5}
+              placeholder={"Reason for calling in sick (not required)"}
+            ></textarea>
+          </div>
           <button
             type="button"
-            class="buttonsick btn btn-danger"
+            className="buttonsick btn btn-danger"
             onClick={callSick}
           >
             Call In Sick
           </button>
-          <div className="inputsick">
-            <TextField
-              id="reasonSick"
-              label="Reason for Calling In Sick (Not Required)"
-              variant="outlined"
-              sx={{ width: "188%" }}
-              multiline
-              rows={3}
-            />
-          </div>
         </div>
       </div>
     );
   }
 }
+
 export default CallInSickPage;

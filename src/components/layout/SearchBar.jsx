@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SearchBar.module.css";
-import CloseIcon from '@mui/icons-material/Close';
-import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 
 function SearchBar({ placeholder, data }) {
   const navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
-  function pickEmployeeHandler(value){
-    if(window.location.pathname === "/team-planner"){
-      navigate("/team-planner", { replace: true, state: {teamId: value.id, name: value.name} });
-    } else if(window.location.pathname === "/team-manage"){
-      navigate("/team-manage", { replace: true, state: {teamId: value.id, name: value.name} });
-    } else{
+  function pickEmployeeHandler(value) {
+    if (window.location.pathname === "/team-planner") {
+      navigate("/team-planner", {
+        replace: true,
+        state: { teamId: value.id, name: value.name },
+      });
+    } else if (window.location.pathname === "/team-manage") {
+      navigate("/team-manage", {
+        replace: true,
+        state: { teamId: value.id, name: value.name },
+      });
+    } else {
       alert(value.id + " - method to load agenda with user data.");
     }
     clearInput();
@@ -60,7 +66,11 @@ function SearchBar({ placeholder, data }) {
         <div className={classes.dataResult}>
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              <a className={classes.dataItem} href={value.link} onClick={() => pickEmployeeHandler(value)}>
+              <a
+                className={classes.dataItem}
+                href={value.link}
+                onClick={() => pickEmployeeHandler(value)}
+              >
                 <p>{value.name} </p>
               </a>
             );
