@@ -7,19 +7,20 @@ function Schedule() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
   const [userAvailabilities, setAvailabilities] = useState([]);
+  const [inOfficeData, setInOffice] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     getUserData();
-        
+
     var tooltips = document.getElementsByClassName('plannerTooltip');
     for (let i = 0; i < tooltips.length; i++) {
-        let tt = tooltips[i];
-        document.addEventListener("mousemove", function(e) {
-            let left = e.pageX;
-            let top = e.pageY;
-            tt.style.left = left + 'px';
-            tt.style.top = top + 'px';
-          });
+      let tt = tooltips[i];
+      document.addEventListener("mousemove", function (e) {
+        let left = e.pageX;
+        let top = e.pageY;
+        tt.style.left = left + 'px';
+        tt.style.top = top + 'px';
+      });
     }
 
   }, [monthName]);
@@ -158,6 +159,22 @@ function Schedule() {
       bottomClass = "BottomToday";
       textStyle = { fontWeight: "bold" };
     }
+
+    let inOfficeT = 0;
+    let inOfficeB = 0;
+    for (let i = 0; i < inOfficeData.length; i++) {
+      const o = inOfficeData[i];
+      if (new Date(o.date).toISOString().split("T")[0] === new Date(date).toISOString().split("T")[0]) {
+        if ((o.id + 1) % 2 === 0) {
+          inOfficeB = o.value;
+        }
+        if ((o.id + 1) % 2 !== 0) {
+          inOfficeT = o.value;
+        }
+        console.log(o);
+      }
+    }
+
     return (
       <div className="Index" id={date.toISOString().split("T")[0]}>
         <p className="dateNum" style={textStyle}>
@@ -168,14 +185,14 @@ function Schedule() {
           style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
           className={topClass}
         >
-          <span class="plannerTooltip">0 people in office</span>
+          <span class="plannerTooltip">{inOfficeT} people in office</span>
         </div>
         <div
           id={`midday-${index}`}
           style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
           className={bottomClass}
         >
-          <span class="plannerTooltip">0 people in office</span>
+          <span class="plannerTooltip">{inOfficeB} people in office</span>
         </div>
       </div>
     );
@@ -282,7 +299,7 @@ function Schedule() {
       .split("T")[0]
       .replaceAll("-", "/");
 
-    let id = 1;
+    let id = 3;
     let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
@@ -293,7 +310,7 @@ function Schedule() {
           availabilities.push({
             beforeMidday: ava.beforeMidday,
             dateTime: ava.dateTime,
-            status: getStatus(ava.status),
+            status: getStatus(ava.status)
           });
         });
 
@@ -313,6 +330,21 @@ function Schedule() {
           if (newIndex) result.push([ava]);
         }
         setAvailabilities(result);
+
+        
+      });
+      let to2 = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32 + 86400000)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
+      fetch(`http://localhost:8080/availability/office?user_id=${id}&start_date=${from}&end_date=${to2}`)
+      .then((response) => response.json())
+      .then((data2) => {
+        let inOffice = [];
+        data2.forEach((o) => {
+          inOffice.push({id: o.id, date: o.date, value: o.inOffice});
+        });
+        setInOffice(inOffice);
       });
   }
 
