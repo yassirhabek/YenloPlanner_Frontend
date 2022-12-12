@@ -12,7 +12,7 @@ function Schedule() {
   const [inOfficeData, setInOffice] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    userId = state.user.id;
+    //userId = state.user.id;
     getUserData();
 
     var tooltips = document.getElementsByClassName('plannerTooltip');
@@ -40,7 +40,7 @@ function Schedule() {
     Edit attendance
   </button>);
   let info = "";
-  if (state.user.id !== 3) {
+  if (userId !== 3) {
     editBtn = "";
     info = <div className="UserInfo">Now viewing <b>{state.user.name}'s</b> attendance</div>;
   }

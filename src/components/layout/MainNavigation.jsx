@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import React from "react";
 import CalendarActive from "../../assets/CalendarActive.PNG";
@@ -12,9 +13,19 @@ import TeamManage from "../../assets/TeamManage.PNG";
 import SingleManage from "../../assets/SingleManage.PNG";
 
 import classes from "./MainNavigation.module.css";
+import UserContext from "../../store/logged-in-context";
+
 
 function MainNavigation() {
-  const admin = true;
+  const userCtx = useContext(UserContext);
+
+  useEffect(() => {
+    console.log("useEffect");
+    console.log(userCtx);
+  }, [])
+  
+
+  const admin = userCtx.ManagerState;
   const location = useLocation();
   let Navbar;
 

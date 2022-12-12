@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
 
+import UserContext from "../../store/logged-in-context";
 import classes from "./TitleBar.module.css";
 import SearchBar from "./SearchBar";
 import YenloLogo from "../../assets/logo.svg";
@@ -7,6 +9,7 @@ import Uitloggen from "../../assets/Uitloggen.PNG";
 import { useEffect, useState } from "react";
 
 function TitleBar() {
+  const userCtx = useContext(UserContext);
   const [werknemers, setWerknemers] = useState([]);
   const [teams, setTeams] = useState([]);
 
@@ -20,7 +23,7 @@ function TitleBar() {
   }, [window.location.pathname]);
 
   function logOutHandler() {
-    alert("Log out method functionality.");
+    userCtx.onLogout();
   }
 
   async function getAllWerknemers() {
@@ -68,6 +71,7 @@ function TitleBar() {
           data={werknemers}
           className={classes.search}
         />
+        <p>{userCtx.Username}</p>
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -85,6 +89,7 @@ function TitleBar() {
           data={werknemers}
           className={classes.search}
         />
+        <p>{userCtx.Username}</p>
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -102,6 +107,7 @@ function TitleBar() {
           data={teams}
           className={classes.search}
         />
+        <p>{userCtx.Username}</p>
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -119,6 +125,7 @@ function TitleBar() {
           data={teams}
           className={classes.search}
         />
+        <p>{userCtx.Username}</p>
         <img
           src={Uitloggen}
           alt="Uitloggen"
@@ -133,6 +140,7 @@ function TitleBar() {
     Titlebar = (
       <header className={classes.header}>
         <img src={YenloLogo} alt="Yenlo Logo" className={classes.logo} />
+        <p>{userCtx.Username}</p>
         <img
           src={Uitloggen}
           alt="Uitloggen"

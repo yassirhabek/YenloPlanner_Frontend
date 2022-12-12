@@ -25,6 +25,7 @@ function LogInPage() {
     var username = data.get("username");
     var password = data.get("password");
     userCtx.onLogin(username, password);
+    console.log(userCtx.User.name);
   };
 
   function Copyright(props) {
