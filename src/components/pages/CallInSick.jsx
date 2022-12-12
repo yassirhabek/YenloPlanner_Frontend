@@ -9,6 +9,7 @@ function CallInSickPage() {
   const [managers, setBeschikbareManagers] = useState([]);
 
   useEffect(() => {
+    initSickStatus()
     getAllProjectManagers();
   }, [sickStatus]);
 
@@ -37,7 +38,7 @@ function CallInSickPage() {
   }
 
   function changeSickStatus(value) {
-    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=1`, {
+    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=3`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
@@ -53,6 +54,19 @@ function CallInSickPage() {
 
   function callBetter() {
     changeSickStatus(0);
+  }
+
+  async function initSickStatus() {
+    const getUser = await fetch("http://localhost:8080/user/3", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        accept: "application/json",
+      });
+    
+      let r = await getUser.json();
+    setSickStatus(r.isSick);
   }
 
   if (sickStatus) {
@@ -95,7 +109,7 @@ function CallInSickPage() {
           <div className="inputsick">
             <textarea
               rows={5}
-              placeholder={"Reason for calling in sick (not required)"}
+              placeholder={"Additional comment (not required)"}
             ></textarea>
           </div>
           <button

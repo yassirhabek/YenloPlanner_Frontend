@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Schedule.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { click } from "@testing-library/user-event/dist/click";
 
 function EditSchedule() {
     var selectedIndex = 0;
@@ -9,30 +10,32 @@ function EditSchedule() {
     const [selectedDate, setSelectedDate] = useState(location.state.dateOfMonth);
     const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
     const [userAvailabilities, setAvailabilities] = useState([]);
+    const [inOfficeData, setInOffice] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         getUserData();
-        
+
         var tooltips = document.getElementsByClassName('plannerTooltip');
         for (let i = 0; i < tooltips.length; i++) {
             let tt = tooltips[i];
-            document.addEventListener("mousemove", function(e) {
+            document.addEventListener("mousemove", function (e) {
                 let left = e.pageX;
                 let top = e.pageY;
                 tt.style.left = left + 'px';
                 tt.style.top = top + 'px';
-              });
+            });
         }
     }, [monthName]);
 
     setTimeout(function () {
         const days = document.querySelectorAll('[id^="morning-"], [id^="midday-"]');
         for (let day of days) {
-            day.addEventListener("click", setDate, false);
+            day.removeEventListener("click", leftClick, false);
+            day.addEventListener("click", leftClick, false);
         }
     }, 100);
 
-    
+
 
     return [
         <div className="scheduleMain">
@@ -56,7 +59,7 @@ function EditSchedule() {
                         "You are about to discard unsaved changes. Are you sure you want to cancel?"
                     )
                 )
-                    navigate("/user-planner", { replace: true });
+                    navigate("/user-planner", { replace: true, state: {user: location.state.user}});
             }}
         >
             Cancel
@@ -107,11 +110,11 @@ function EditSchedule() {
         let putAttendance = [];
         let postAttendance = [];
         let deleteAttendance = [];
-        const user = 1;
+        const user = location.state.user.id;
         dayParts.forEach(d => {
             let morning = d.id.split('-')[0] === "morning";
             if (d.dataset.id != undefined) {
-                if (/*d.dataset.status != "0"*/ true){
+                if (/*d.dataset.status != "0"*/ true) {
                     putAttendance.push({
                         id: Number(d.dataset.id),
                         user: {
@@ -126,14 +129,14 @@ function EditSchedule() {
                 }
             } else {
                 if (d.dataset.status != "0") {
-                postAttendance.push({
-                    user: {
-                        id: user
-                    },
-                    beforeMidday: Number(morning),
-                    dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
-                    status: getDBName(Number(d.dataset.status))
-                });   
+                    postAttendance.push({
+                        user: {
+                            id: user
+                        },
+                        beforeMidday: Number(morning),
+                        dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
+                        status: getDBName(Number(d.dataset.status))
+                    });
                 }
             }
         });
@@ -146,24 +149,36 @@ function EditSchedule() {
             .then(response => {
                 if (response.status === 200) {
                     fetch(`http://localhost:8080/availability/add/week`, {
-                    method: 'POST', body: JSON.stringify(postAttendance),
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                    .then(response => {
-                        if (response.status === 200) {
-                            navigate("/user-planner", { replace: true });
+                        method: 'POST', body: JSON.stringify(postAttendance),
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                        .then(response => {
+                            if (response.status === 200) {
+                                navigate("/user-planner", { replace: true, state: {user: location.state.user} });
+                            }
                         }
-                    }
-                    ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
+                        ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
                 }
             }
             ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
     }
 
-    function setDate(event) {
-        var clickedElement = document.getElementById(event.currentTarget.id);
+    function rightClick (e) {
+        var clickedElement = document.getElementById(e.currentTarget.id);
+        e.preventDefault();
+        changeDate(clickedElement, 0);
+        return false;
+    };
 
-        if (
+
+    function leftClick(event) {
+        var clickedElement = document.getElementById(event.currentTarget.id);
+        changeDate(clickedElement, selectedIndex);
+    }
+
+    function changeDate(clickedElement, index) {
+
+    if (
             clickedElement.dataset.status === "4" ||
             clickedElement.dataset.status === "5"
         ) {
@@ -179,9 +194,9 @@ function EditSchedule() {
         const morning = clickedElement.id.split("-")[0] === "morning";
         const status = selectedIndex;
 
-        clickedElement.dataset.status = selectedIndex;
+        clickedElement.dataset.status = index;
         clickedElement.style.backgroundColor = `var(--${ColorByStatus(
-            selectedIndex
+            index
         )})`;
     }
 
@@ -269,34 +284,48 @@ function EditSchedule() {
             bottomClass = "BottomToday";
             textStyle = { fontWeight: "bold" };
         }
+
+        let inOfficeT = 0;
+        let inOfficeB = 0;
+        for (let i = 0; i < inOfficeData.length; i++) {
+            const o = inOfficeData[i];
+            if (new Date(o.date).toISOString().split("T")[0] === new Date(date).toISOString().split("T")[0]) {
+                if ((o.id + 1) % 2 === 0) {
+                    inOfficeB = o.value;
+                }
+                if ((o.id + 1) % 2 !== 0) {
+                    inOfficeT = o.value;
+                }
+                console.log(o);
+            }
+        }
+
         return (
             <div className="Index" id={date.toISOString().split("T")[0]}>
                 <p className="dateNum" style={textStyle}>
                     {date.getDate()}
                 </p>
-                <div
+                <div onContextMenu={rightClick}
                     id={`morning-${index}`}
                     data-status={morning}
                     data-id={id1}
                     style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
                     className={topClass}
                 >
-                    <span class="plannerTooltip">0 people in office</span>
+                    <span class="plannerTooltip">{inOfficeT} {inOfficeT != 1 ? 'people' : 'person'}  in office</span>
                 </div>
-                <div
+                <div onContextMenu={rightClick}
                     id={`midday-${index}`}
                     data-status={noon}
                     data-id={id2}
                     style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
                     className={bottomClass}
                 >
-                    <span class="plannerTooltip">0 people in office</span>
+                    <span class="plannerTooltip">{inOfficeB} {inOfficeB != 1 ? 'people' : 'person'}  in office</span>
                 </div>
             </div>
         );
     }
-
-   
 
     function ColorByStatus(status) {
         switch (status) {
@@ -399,7 +428,7 @@ function EditSchedule() {
             .split("T")[0]
             .replaceAll("-", "/");
 
-        let id = 1;
+        let id = location.state.user.id;
         let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
 
         fetch(url)
@@ -432,6 +461,20 @@ function EditSchedule() {
                 }
                 setAvailabilities(result);
             });
+
+      let to2 = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32 + 86400000)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
+      fetch(`http://localhost:8080/availability/office?user_id=${id}&start_date=${from}&end_date=${to2}`)
+      .then((response) => response.json())
+      .then((data2) => {
+        let inOffice = [];
+        data2.forEach((o) => {
+          inOffice.push({id: o.id, date: o.date, value: o.inOffice});
+        });
+        setInOffice(inOffice);
+      });
     }
 
     function findIndexByDate(date, allDays) {

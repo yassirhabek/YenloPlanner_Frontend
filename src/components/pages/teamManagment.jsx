@@ -88,8 +88,8 @@ function TeamManagment() {
 
   async function deleteMemberFromTeam(id) {
     try {
-      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId: teamId, userId: id}), {
-        method: "DELETE"
+      const response = await fetch("http://localhost:8080/team/" + id, {
+        method: "DELETE"  
       });
       response.json !== null ? alert("User is deleted from the team") : alert("Critical error");
       window.location.reload();
@@ -102,7 +102,7 @@ function TeamManagment() {
     try {
       var answer = window.confirm("Are you sure you want to delete this team? (This action can not be undone)");
       if (answer) {
-        const response = await fetch("http://localhost:8080/team?" + new URLSearchParams({teamId: teamId}), {
+        const response = await fetch("http://localhost:8080/team?" + new URLSearchParams({teamId: teamId, userId: 11}), {
           method: "DELETE"
         });
         response.json !== null ? alert("Team is deleted") : alert("Critical error");
