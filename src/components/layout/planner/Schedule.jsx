@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./Schedule.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 function Schedule() {
+  var userId = 3;
+  const {state} = useLocation();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
   const [userAvailabilities, setAvailabilities] = useState([]);
   const [inOfficeData, setInOffice] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
+    userId = state.user.id;
     getUserData();
 
     var tooltips = document.getElementsByClassName('plannerTooltip');
@@ -23,7 +26,25 @@ function Schedule() {
       });
     }
 
-  }, [monthName]);
+  }, [monthName, state]);
+
+  let editBtn = (<button
+    className="attendanceBtn"
+    onClick={() =>
+      navigate("./edit", {
+        replace: true,
+        state: { dateOfMonth: selectedDate, user: state.user },
+      })
+    }
+  >
+    Edit attendance
+  </button>);
+  let info = "";
+  if (state.user.id !== 3) {
+    editBtn = "";
+    info = <div className="UserInfo">Now viewing <b>{state.user.name}'s</b> attendance</div>;
+  }
+
   return [
     <div className="scheduleMain">
       <h1 className="ScheduleHeader">
@@ -41,17 +62,8 @@ function Schedule() {
         </div>
       </div>
     </div>,
-    <button
-      className="attendanceBtn"
-      onClick={() =>
-        navigate("./edit", {
-          replace: true,
-          state: { dateOfMonth: selectedDate },
-        })
-      }
-    >
-      Edit attendance
-    </button>,
+    info,
+    editBtn,
     Legend(),
   ];
 
@@ -171,10 +183,9 @@ function Schedule() {
         if ((o.id + 1) % 2 !== 0) {
           inOfficeT = o.value;
         }
-        console.log(o);
       }
     }
-
+    
     return (
       <div className="Index" id={date.toISOString().split("T")[0]}>
         <p className="dateNum" style={textStyle}>
@@ -185,14 +196,14 @@ function Schedule() {
           style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
           className={topClass}
         >
-          <span class="plannerTooltip">{inOfficeT} people in office</span>
+          <span class="plannerTooltip">{inOfficeT} {inOfficeT != 1 ? 'people' : 'person'} in office</span>
         </div>
         <div
           id={`midday-${index}`}
           style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
           className={bottomClass}
         >
-          <span class="plannerTooltip">{inOfficeB} people in office</span>
+          <span class="plannerTooltip">{inOfficeB} {inOfficeB != 1 ? 'people' : 'person'} in office</span>
         </div>
       </div>
     );
@@ -299,8 +310,7 @@ function Schedule() {
       .split("T")[0]
       .replaceAll("-", "/");
 
-    let id = 3;
-    let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
+    let url = `http://localhost:8080/availability/between?user_id=${userId}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -337,7 +347,7 @@ function Schedule() {
       .toISOString()
       .split("T")[0]
       .replaceAll("-", "/");
-      fetch(`http://localhost:8080/availability/office?user_id=${id}&start_date=${from}&end_date=${to2}`)
+      fetch(`http://localhost:8080/availability/office?user_id=${userId}&start_date=${from}&end_date=${to2}`)
       .then((response) => response.json())
       .then((data2) => {
         let inOffice = [];
