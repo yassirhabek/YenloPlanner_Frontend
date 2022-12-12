@@ -1,5 +1,7 @@
+import AbsenceSchedule from "../askforleave/AbsenceSchedule";
+
 function AskForLeavePage() {
-  return <div>Ask For Leave Page</div>;
+  return <div><AbsenceSchedule></AbsenceSchedule></div>;
 }
 
 export default AskForLeavePage;

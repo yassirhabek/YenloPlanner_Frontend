@@ -10,7 +10,7 @@ function CallInSickPage() {
 
   useEffect(() => {
     getAllProjectManagers();
-  }, []);
+  }, [sickStatus]);
 
   async function getAllProjectManagers() {
     const ManagerOptions = [];
