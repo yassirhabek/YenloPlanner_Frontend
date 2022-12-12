@@ -95,7 +95,7 @@ function CallInSickPage() {
           <div className="inputsick">
             <textarea
               rows={5}
-              placeholder={"Reason for calling in sick (not required)"}
+              placeholder={"Additional comment (not required)"}
             ></textarea>
           </div>
           <button
