@@ -20,7 +20,7 @@ function SearchBar({ placeholder, data }) {
         replace: true,
         state: { teamId: value.id, name: value.name },
       });
-    } else if (window.location.pathname === "/user-planner") {
+    } else if (window.location.pathname === "/user-planner" || window.location.pathname === "/user-planner/edit") {
       navigate("/user-planner", {
         replace: true,
         state: { user: {id: value.id, name: value.name}},

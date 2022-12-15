@@ -62,20 +62,17 @@ function SingleManagmentPage() {
         alert("Employee deleted");
         window.location.reload();
       }
-    } else {
-      alert("Employee not deleted");
     }
   }
   return (
     <div>
       <div className={classes.container}>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <Table sx={{ minWidth: "100%" }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">Naam</TableCell>
-                <TableCell align="right">Email</TableCell>
+                <TableCell align="left">Naam</TableCell>
+                <TableCell align="left">Email</TableCell>
                 <TableCell align="right"> </TableCell>
               </TableRow>
             </TableHead>
@@ -85,11 +82,8 @@ function SingleManagmentPage() {
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.email}</TableCell>
+                  <TableCell align="left">{row.name}</TableCell>
+                  <TableCell align="left">{row.email}</TableCell>
                   <TableCell align="right">
                     {" "}
                     <img

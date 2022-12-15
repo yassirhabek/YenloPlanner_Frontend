@@ -71,7 +71,7 @@ function TeamManagment() {
   async function AddWerknemerToTeam() {
     try {
       if(werknemerId === null || werknemerId === undefined){
-        alert("Please select a user.");
+        alert("Please select an employee.");
         return;
       }
 
@@ -147,7 +147,6 @@ function TeamManagment() {
           <Table striped className={classes.tableTeam}>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Naam</th>
                 <th>Email</th>
                 <th>
@@ -155,7 +154,7 @@ function TeamManagment() {
                     Add
                   </Button>
                   <Modal
-                    size="lg"
+                    size="10%"
                     show={lgShow}
                     onHide={() => setLgShow(false)}
                     aria-labelledby="example-modal-sizes-title-lg"
@@ -165,7 +164,8 @@ function TeamManagment() {
                       <h3>Add Employee</h3>
                     </Modal.Header>
                     <Modal.Body>
-                      <Autocomplete
+                      <Autocomplete 
+                        style={{width:"100%"}}
                         disablePortal
                         id="combo-box"
                         onChange={(event, value) => setWerknemerId(value.id)}
@@ -198,8 +198,7 @@ function TeamManagment() {
             </thead>
             <tbody>
               { team.user?.map((member, index) => (
-                  <tr key={index}>
-                    <td>{member.id}</td>
+                  <tr key={index} >
                     <td>{member.name}</td>
                     <td>{member.email}</td>
                     <td>
@@ -224,7 +223,7 @@ function TeamManagment() {
         Create New Team
       </button>
       <Modal
-        size="lg"
+        size="10%"
         show={mgShow}
         onHide={() => setMgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
@@ -234,7 +233,7 @@ function TeamManagment() {
           <h3>Create Team</h3>
         </Modal.Header>
         <Modal.Body>
-          <TextField id="teamName" label="Team Name" variant="outlined" />
+          <TextField id="teamName" label="Team Name" variant="outlined" style={{width:"100%"}}/>
           <br />
           <Button
             className="mt-3"

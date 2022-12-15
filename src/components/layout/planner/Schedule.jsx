@@ -301,6 +301,7 @@ function Schedule() {
   }
 
   function getUserData() {
+    
     // retrieve data here:
     let from = firstIndex(selectedDate)
       .toISOString()
@@ -341,8 +342,6 @@ function Schedule() {
           if (newIndex) result.push([ava]);
         }
         setAvailabilities(result);
-
-        
       });
       let to2 = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32 + 86400000)
       .toISOString()
