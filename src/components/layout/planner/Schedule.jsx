@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 function Schedule() {
-  var userId = 3;
   const {state} = useLocation();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
@@ -12,7 +11,6 @@ function Schedule() {
   const [inOfficeData, setInOffice] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    //userId = state.user.id;
     getUserData();
 
     var tooltips = document.getElementsByClassName('plannerTooltip');
@@ -40,7 +38,7 @@ function Schedule() {
     Edit attendance
   </button>);
   let info = "";
-  if (userId !== 3) {
+  if (state.user.id !== 3) {
     editBtn = "";
     info = <div className="UserInfo">Now viewing <b>{state.user.name}'s</b> attendance</div>;
   }
@@ -300,6 +298,7 @@ function Schedule() {
   }
 
   function getUserData() {
+    
     // retrieve data here:
     let from = firstIndex(selectedDate)
       .toISOString()
@@ -310,7 +309,7 @@ function Schedule() {
       .split("T")[0]
       .replaceAll("-", "/");
 
-    let url = `http://localhost:8080/availability/between?user_id=${userId}&start_date=${from}&end_date=${to}`;
+    let url = `http://localhost:8080/availability/between?user_id=${state.user.id}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -340,14 +339,12 @@ function Schedule() {
           if (newIndex) result.push([ava]);
         }
         setAvailabilities(result);
-
-        
       });
       let to2 = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32 + 86400000)
       .toISOString()
       .split("T")[0]
       .replaceAll("-", "/");
-      fetch(`http://localhost:8080/availability/office?user_id=${userId}&start_date=${from}&end_date=${to2}`)
+      fetch(`http://localhost:8080/availability/office?user_id=${state.user.id}&start_date=${from}&end_date=${to2}`)
       .then((response) => response.json())
       .then((data2) => {
         let inOffice = [];
