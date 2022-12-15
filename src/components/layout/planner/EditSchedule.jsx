@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Schedule.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { click } from "@testing-library/user-event/dist/click";
 
 function EditSchedule() {
     var selectedIndex = 0;
@@ -296,7 +295,6 @@ function EditSchedule() {
                 if ((o.id + 1) % 2 !== 0) {
                     inOfficeT = o.value;
                 }
-                console.log(o);
             }
         }
 

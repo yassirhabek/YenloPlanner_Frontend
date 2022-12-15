@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
 import MainNavigation from "./components/layout/MainNavigation";
 import TitleBar from "./components/layout/TitleBar";
 
@@ -10,27 +11,109 @@ import SingleManagmentPage from "./components/pages/singleManagment";
 import TeamManagmentPage from "./components/pages/teamManagment";
 import CreateUserPage from "./components/pages/CreateUser";
 import LoginPage from "./components/pages/Login";
+import UserContext from "./store/logged-in-context";
 
 import "./App.css";
 
 function App() {
+  const userCtx = useContext(UserContext);
+
+  const PrivateRoute = ({ children }) => {
+    return userCtx.isLoggedIn ? children : <Navigate to="/login" />;
+  };
+
+  const PrivateRouteLoggedIn = ({ children }) => {
+    return userCtx.isLoggedIn ? <Navigate to="/user-planner" /> : children;
+  };
+
   return (
     <div className="App">
       <TitleBar />
       <MainNavigation />
-      
+
       <Routes>
-        <Route path="/ask-for-leave" element={<AskForLeavePage />} />
-        <Route path="/call-in-sick" element={<CallInSickPage />} />
-        <Route path="/team-planner" element={<TeamPlannerPage />} />
-        <Route path="/user-planner" element={<UserPlannerPage editMode={false}/>} />
-        <Route path="/user-planner/edit" element={<UserPlannerPage editMode={true} />} />
-        <Route path="/single-manage" element={<SingleManagmentPage />} />
-        <Route path="/team-manage" element={<TeamManagmentPage />} />
-        <Route path="/create-user" element={<CreateUserPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/ask-for-leave"
+          element={
+            <PrivateRoute>
+              {" "}
+              <AskForLeavePage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/call-in-sick"
+          element={
+            <PrivateRoute>
+              {" "}
+              <CallInSickPage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/team-planner"
+          element={
+            <PrivateRoute>
+              {" "}
+              <TeamPlannerPage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user-planner"
+          element={
+            <PrivateRoute>
+              {" "}
+              <UserPlannerPage editMode={false} />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user-planner/edit"
+          element={
+            <PrivateRoute>
+              {" "}
+              <UserPlannerPage editMode={true} />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/single-manage"
+          element={
+            <PrivateRoute>
+              {" "}
+              <SingleManagmentPage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/team-manage"
+          element={
+            <PrivateRoute>
+              {" "}
+              <TeamManagmentPage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create-user"
+          element={
+            <PrivateRoute>
+              {" "}
+              <CreateUserPage />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PrivateRouteLoggedIn>
+              {" "}
+              <LoginPage />{" "}
+            </PrivateRouteLoggedIn>
+          }
+        />
       </Routes>
-      
     </div>
   );
 }

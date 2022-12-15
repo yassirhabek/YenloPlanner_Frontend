@@ -1,10 +1,12 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../store/logged-in-context";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CallinSick.modules.css";
 
 function CallInSickPage() {
+  const userCtx = useContext(UserContext);
   const [sickStatus, setSickStatus] = useState(false);
   const [managers, setBeschikbareManagers] = useState([]);
 
@@ -38,7 +40,7 @@ function CallInSickPage() {
   }
 
   function changeSickStatus(value) {
-    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=3`, {
+    fetch(`http://localhost:8080/user/sick?isSick=${value}&userId=${userCtx.user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
@@ -57,7 +59,7 @@ function CallInSickPage() {
   }
 
   async function initSickStatus() {
-    const getUser = await fetch("http://localhost:8080/user/3", {
+    const getUser = await fetch(`http://localhost:8080/user/${userCtx.user.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

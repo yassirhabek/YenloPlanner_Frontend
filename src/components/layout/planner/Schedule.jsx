@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import "./Schedule.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import UserContext from "../../../store/logged-in-context";
 
 function Schedule() {
-  var userId = 3;
+  const userCtx = useContext(UserContext);
   const {state} = useLocation();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
   const [userAvailabilities, setAvailabilities] = useState([]);
   const [inOfficeData, setInOffice] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
-    //userId = state.user.id;
     getUserData();
 
     var tooltips = document.getElementsByClassName('plannerTooltip');
@@ -33,14 +34,14 @@ function Schedule() {
     onClick={() =>
       navigate("./edit", {
         replace: true,
-        state: { dateOfMonth: selectedDate, user: state.user },
+        state: { dateOfMonth: selectedDate, user: userCtx.user },
       })
     }
   >
     Edit attendance
   </button>);
   let info = "";
-  if (userId !== 3) {
+  if (2 === 1) {
     editBtn = "";
     info = <div className="UserInfo">Now viewing <b>{state.user.name}'s</b> attendance</div>;
   }
@@ -310,7 +311,7 @@ function Schedule() {
       .split("T")[0]
       .replaceAll("-", "/");
 
-    let url = `http://localhost:8080/availability/between?user_id=${userId}&start_date=${from}&end_date=${to}`;
+    let url = `http://localhost:8080/availability/between?user_id=${userCtx.user.id}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -347,7 +348,7 @@ function Schedule() {
       .toISOString()
       .split("T")[0]
       .replaceAll("-", "/");
-      fetch(`http://localhost:8080/availability/office?user_id=${userId}&start_date=${from}&end_date=${to2}`)
+      fetch(`http://localhost:8080/availability/office?user_id=${userCtx.user.id}&start_date=${from}&end_date=${to2}`)
       .then((response) => response.json())
       .then((data2) => {
         let inOffice = [];

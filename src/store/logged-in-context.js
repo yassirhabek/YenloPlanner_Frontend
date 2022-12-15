@@ -2,14 +2,14 @@ import { createContext, useState } from "react";
 
 const loggedInCtx = createContext({
   isLoggedIn: false,
-  user: null,
+  user: {},
   onLogin: (username, password) => {},
   onLogout: () => {},
 });
 
 export function UserContextProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [User, setUser] = useState(null);
+  const [User, setUser] = useState({});
 
   const loginHandler = async (username, password) => {
     const response = await fetch("http://localhost:8080/auth/login", {
@@ -28,17 +28,15 @@ export function UserContextProvider(props) {
     if (response.ok) {
       document.cookie = "token=" + result.accessToken;
       getUserFromToken(result.accessToken);
+      setIsLoggedIn(true);
     } else {
       alert("Login failed");
     }
-
-    setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
     document.cookie = "token=  ;expires=Thu, 01 Jan 1970 00:00:01 GMT";
     setIsLoggedIn(false);
-    window.location.href = "/login";
   };
 
   const getUserFromToken = async (token) => {
@@ -52,9 +50,7 @@ export function UserContextProvider(props) {
     const userData = await response.json();
 
     if (response.ok) {
-        setUser(userData);
-        console.log(userData);
-      window.location.href = "/user-planner";
+        setUser(User => ({...User, ...userData}));
     } else {
       alert("User data not found");
     }
