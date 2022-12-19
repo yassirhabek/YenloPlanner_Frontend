@@ -23,7 +23,7 @@ function App() {
   };
 
   const PrivateRouteLoggedIn = ({ children }) => {
-    return userCtx.isLoggedIn ? <Navigate to="/user-planner" /> : children;
+    return userCtx.isLoggedIn ? <Navigate to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}/> : children;
   };
 
 
