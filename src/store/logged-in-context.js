@@ -1,15 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const loggedInCtx = createContext({
+  authenticationCheck: true,
   isLoggedIn: false,
   user: {},
   onLogin: (username, password) => {},
   onLogout: () => {},
+  getUser: (token) => {},
 });
 
 export function UserContextProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [User, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const loginHandler = async (username, password) => {
     const response = await fetch("http://localhost:8080/auth/login", {
@@ -28,6 +31,7 @@ export function UserContextProvider(props) {
     if (response.ok) {
       document.cookie = "token=" + result.accessToken;
       getUserFromToken(result.accessToken);
+      console.log(result.accessToken);
       setIsLoggedIn(true);
     } else {
       alert("Login failed");
@@ -40,6 +44,7 @@ export function UserContextProvider(props) {
   };
 
   const getUserFromToken = async (token) => {
+    console.log("http://localhost:8080/auth/jwt?" + new URLSearchParams({token: token}));
     const response = await fetch("http://localhost:8080/auth/jwt?" + new URLSearchParams({token: token}), {
       method: "GET",
       headers: {
@@ -51,16 +56,20 @@ export function UserContextProvider(props) {
 
     if (response.ok) {
         setUser(User => ({...User, ...userData}));
+        setIsLoggedIn(true);
+        setLoading(false);
     } else {
-      alert("User data not found");
+      setLoading(false);
     }
   };
 
   const contextValue = {
+    authenticationCheck: loading,
     isLoggedIn: isLoggedIn,
     user: User,
     onLogin: loginHandler,
     onLogout: logoutHandler,
+    getUser: getUserFromToken,
   };
 
   return (

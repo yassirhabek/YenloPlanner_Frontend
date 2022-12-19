@@ -26,6 +26,7 @@ function TeamManagment() {
       setTeamId(location.state.teamId);
       getTeamMembers(location.state.teamId);
       getAllWerknemers();
+      window.history.replaceState({}, document.title);
     }
   }, [location.state]);
 
@@ -106,8 +107,7 @@ function TeamManagment() {
           method: "DELETE"
         });
         response.json !== null ? alert("Team is deleted") : alert("Critical error");
-        var url = window.location.protocol + "//" + window.location.host + "/user-planner";
-        window.location.href = url;
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

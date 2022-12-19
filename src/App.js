@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import MainNavigation from "./components/layout/MainNavigation";
 import TitleBar from "./components/layout/TitleBar";
 
@@ -25,6 +25,20 @@ function App() {
   const PrivateRouteLoggedIn = ({ children }) => {
     return userCtx.isLoggedIn ? <Navigate to="/user-planner" /> : children;
   };
+
+
+  useEffect(() => {
+    let token = document.cookie;
+    userCtx.getUser(token.replace("token=", ""));
+  }, []);
+
+  if (userCtx.authenticationCheck) {
+    return (
+      <section>
+        <h1>Authenticating...</h1>
+      </section>
+    );
+  }
 
   return (
     <div className="App">
