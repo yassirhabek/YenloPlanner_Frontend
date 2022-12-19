@@ -69,27 +69,27 @@ function TeamManagment() {
     }
   }
 
-  async function AddWerknemerToTeam() {
+  async function AddWerknemerToTeam(teamid, userid) {
     try {
-      if(werknemerId === null || werknemerId === undefined){
+      if(teamid === null || teamid === undefined){
         alert("Please select an employee.");
         return;
       }
 
-      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId: teamId, userId: werknemerId}), {
+      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId: teamid, userId: userid}), {
         method: "POST"
       });
-      
-      response.json !== null ? alert("User is added to the team") : alert("Critical error");
+
+      response.ok === true ? alert("User is added to the team") : alert("Critical error");
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function deleteMemberFromTeam(id) {
+  async function deleteMemberFromTeam(teamid, userid) {
     try {
-      const response = await fetch("http://localhost:8080/team/" + id, {
+      const response = await fetch("http://localhost:8080/team/user?" + new URLSearchParams({teamId : teamid, userId : userid }), {
         method: "DELETE"  
       });
       response.json !== null ? alert("User is deleted from the team") : alert("Critical error");
@@ -103,7 +103,7 @@ function TeamManagment() {
     try {
       var answer = window.confirm("Are you sure you want to delete this team? (This action can not be undone)");
       if (answer) {
-        const response = await fetch("http://localhost:8080/team?" + new URLSearchParams({teamId: teamId, userId: 11}), {
+        const response = await fetch("http://localhost:8080/team?" + new URLSearchParams({teamId: teamId}), {
           method: "DELETE"
         });
         response.json !== null ? alert("Team is deleted") : alert("Critical error");
@@ -180,7 +180,7 @@ function TeamManagment() {
                       <Button
                         className="mt-3"
                         variant="primary"
-                        onClick={() => AddWerknemerToTeam()}
+                        onClick={() => AddWerknemerToTeam(team.id, werknemerId)}
                       >
                         Add
                       </Button>
@@ -204,7 +204,8 @@ function TeamManagment() {
                     <td>
                       <Button
                         variant="danger"
-                        onClick={() => deleteMemberFromTeam(member.id)}
+                        style={{ alignContent: "right" }}
+                        onClick={() => deleteMemberFromTeam(team.id, member.id)}
                       >
                         Remove
                       </Button>
