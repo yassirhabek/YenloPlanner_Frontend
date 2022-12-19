@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./AbsenceSchedule.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function AbsenceSchedule() {
   var selectedIndex = 1;
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [disabled, setDisabled] = useState(true);
   const [monthName, setMonthName] = useState(nameOfMonth(selectedDate));
@@ -11,6 +14,7 @@ function AbsenceSchedule() {
 
   useEffect(() => {
     getAllProjectManagers();
+    getUserData();
   }, []);
 
   async function getAllProjectManagers() {
@@ -37,23 +41,25 @@ function AbsenceSchedule() {
     }
   }
 
-  setTimeout(function () {
-    const days = document.querySelectorAll('[id^="morning-"], [id^="midday-"]');
-    for (let day of days) {
-      day.addEventListener("click", setDate, false);
-    }
-  }, 100);
-
   function setDate(event) {
     var clickedElement = document.getElementById(event.currentTarget.id);
 
+    if (clickedElement.dataset.id != undefined && clickedElement.dataset.status === "true") {
+      alert("Cannot edit existing mark. Please contact your project manager if you believe this is an error.");
+      return;
+    }
+    const d = new Date(new Date(clickedElement.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00");
+    if (d < Date.now() && !isSameDay(d, Date.now())) {
+      alert("Cannot request absence for past days.");
+      return;
+    }
+
     if (clickedElement.dataset.status === "1") {
-        clickedElement.dataset.status = 0;
-        clickedElement.style.backgroundColor = `var(--${ColorByStatus(
-          0
-        )})`;
+      clickedElement.dataset.status = 0;
+      clickedElement.style.backgroundColor = `var(--${ColorByStatus(
+        0
+      )})`;
     } else {
-        setDisabled(false);
       clickedElement.dataset.status = selectedIndex;
       clickedElement.style.backgroundColor = `var(--${ColorByStatus(
         selectedIndex
@@ -64,8 +70,8 @@ function AbsenceSchedule() {
   return [
     <div className="scheduleMain">
       <h1 className="ScheduleHeader">
-        <a onClick={() => disabled ? moveMonths(-1) : ""}>←</a> {monthName}{" "}
-        <a onClick={() => disabled ? moveMonths(1) : ""}>→</a>{" "}
+        <a onClick={() => moveMonths(-1)}>←</a> {monthName}{" "}
+        <a onClick={() => moveMonths(1)}>→</a>{" "}
       </h1>
       <div className="background">
         <div className="daysTable">
@@ -82,10 +88,64 @@ function AbsenceSchedule() {
   ];
 
 
-  function submitAbsence(){
-    alert("Send request to PM");
-    setDisabled(true);
-    allDays();
+  function submitAbsence() {
+    const dayParts = document.querySelectorAll('[id^="morning-"], [id^="midday-"]');
+    let putAttendance = [];
+    let postAttendance = [];
+    let deleteAttendance = [];
+    const user = location.state.user.id;
+    dayParts.forEach(d => {
+      let morning = d.id.split('-')[0] === "morning";
+      if (d.dataset.id != undefined) {
+        if (d.dataset.status != "false") {
+          putAttendance.push({
+            id: Number(d.dataset.id),
+            user: {
+              id: user
+            },
+            beforeMidday: Number(morning),
+            dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
+            status: "LEAVE"
+          });
+        } else {
+          deleteAttendance.push(Number(d.dataset.id));
+        }
+      } else {
+        if (d.dataset.status != "false") {
+          postAttendance.push({
+            user: {
+              id: user
+            },
+            beforeMidday: Number(morning),
+            dateTime: new Date(d.parentElement.id).toISOString().split('T')[0] + "T00:00:00.000+01:00",
+            status: "LEAVE"
+          });
+        }
+      }
+    });
+
+    console.log(putAttendance);
+    console.log(postAttendance);
+    // put
+    fetch(`http://localhost:8080/availability/update/month`, {
+      method: 'PUT', body: JSON.stringify(putAttendance),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+        if (response.status === 200) {
+          fetch(`http://localhost:8080/availability/add/week`, {
+            method: 'POST', body: JSON.stringify(postAttendance),
+            headers: { 'Content-Type': 'application/json' }
+          })
+            .then(response => {
+              if (response.status === 200) {
+                navigate("/ask-for-leave", { replace: true, state: { user: location.state.user } });
+              }
+            }
+            ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
+        }
+      }
+      ).catch(err => alert("Something went wrong while trying to process your request. Please try again."));
   }
 
   function requestAbsence() {
@@ -161,25 +221,31 @@ function AbsenceSchedule() {
           if (avaPair[1] != null) {
             days[j] = Day(
               j,
-              avaPair[0].status,
-              avaPair[1].status,
-              new Date(firstDate.getTime() + 86400000 * addDays)
+              avaPair[0].onLeave,
+              avaPair[1].onLeave,
+              new Date(firstDate.getTime() + 86400000 * addDays),
+              avaPair[0].id,
+              avaPair[1].id
             );
           } else {
             const ava = avaPair[0];
             if (ava.beforeMidday)
               days[j] = Day(
                 j,
-                avaPair[0].status,
+                avaPair[0].onLeave,
                 0,
-                new Date(firstDate.getTime() + 86400000 * addDays)
+                new Date(firstDate.getTime() + 86400000 * addDays),
+                avaPair[0].id,
+                -1
               );
             else
               days[j] = Day(
                 j,
                 0,
-                avaPair[0].status,
-                new Date(firstDate.getTime() + 86400000 * addDays)
+                avaPair[0].onLeave,
+                new Date(firstDate.getTime() + 86400000 * addDays),
+                -1,
+                avaPair[0].id
               );
           }
           break;
@@ -193,28 +259,47 @@ function AbsenceSchedule() {
     return days;
   }
 
-  function Day(index, morning, noon, date) {
+  function Day(index, morning, noon, date, id1, id2) {
     var topClass = "Top";
     var bottomClass = "Bottom";
     var textStyle = {};
+    let clr1 = ColorByStatus(morning);
+    let clr2 = ColorByStatus(noon);
     if (isSameDay(date, Date.now())) {
       topClass = "TopToday";
       bottomClass = "BottomToday";
       textStyle = { fontWeight: "bold" };
+    } else if (date < Date.now()) {
+      if (!morning)
+      clr1 = "clrUnclickableGray"
+      
+      if (!noon)
+      clr2 = "clrUnclickableGray"
     }
+
+    if (morning)
+    clr1 = "clrUnclickableLeave"
+    
+    if (noon)
+    clr2 = "clrUnclickableLeave"
+
     return (
       <div className="Index" id={date.toISOString().split("T")[0]}>
         <p className="dateNum" style={textStyle}>
           {date.getDate()}
         </p>
-        <div
+        <div onClick={setDate}
           id={`morning-${index}`}
-          style={{ backgroundColor: `var(--${ColorByStatus(morning)})` }}
+          data-status={morning}
+          data-id={id1}
+          style={{ backgroundColor: `var(--${clr1})` }}
           className={topClass}
         ></div>
-        <div
+        <div onClick={setDate}
           id={`midday-${index}`}
-          style={{ backgroundColor: `var(--${ColorByStatus(noon)})` }}
+          data-status={noon}
+          data-id={id2}
+          style={{ backgroundColor: `var(--${clr2})` }}
           className={bottomClass}
         ></div>
       </div>
@@ -228,7 +313,7 @@ function AbsenceSchedule() {
       case 1:
         return "clrLeave";
       default:
-        return "gray";
+        return status ? "clrLeave" : "gray";
     }
   }
 
@@ -310,6 +395,52 @@ function AbsenceSchedule() {
     const day = firstDay.getDay();
     let diff = firstDay.getDate() - day + (day == 0 ? -6 : 1);
     return new Date(now.setDate(diff));
+  }
+
+  function getUserData() {
+    // retrieve data here:
+    let from = firstIndex(selectedDate)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
+    let to = new Date(firstIndex(selectedDate).getTime() + 86400000 * 32)
+      .toISOString()
+      .split("T")[0]
+      .replaceAll("-", "/");
+
+    let id = location.state.user.id;
+    let url = `http://localhost:8080/availability/between?user_id=${id}&start_date=${from}&end_date=${to}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        let availabilities = [];
+        data.availabilities.forEach((ava) => {
+          availabilities.push({
+            id: ava.id,
+            beforeMidday: ava.beforeMidday,
+            dateTime: ava.dateTime,
+            onLeave: ava.status === "LEAVE",
+          });
+        });
+
+        // sort array
+        let result = [];
+        for (let i = 0; i < availabilities.length; i++) {
+          const ava = availabilities[i];
+          let newIndex = true;
+          for (let j = 0; j < result.length; j++) {
+            const resultAva = result[j];
+            if (isSameDay(resultAva[0].dateTime, ava.dateTime)) {
+              result[j] = [resultAva[0], ava];
+              newIndex = false;
+              break;
+            }
+          }
+          if (newIndex) result.push([ava]);
+        }
+        setAvailabilities(result);
+      });
   }
 }
 

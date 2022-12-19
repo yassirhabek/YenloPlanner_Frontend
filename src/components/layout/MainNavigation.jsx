@@ -41,7 +41,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
 
@@ -75,7 +75,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
       </div>
@@ -96,7 +96,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
 
@@ -127,7 +127,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
       </div>
@@ -148,7 +148,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartActive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
 
@@ -179,7 +179,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartActive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
       </div>
@@ -200,7 +200,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneActive} width="70" alt="Leave" />
         </Link>
 
@@ -231,7 +231,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneActive} width="70" alt="Leave" />
         </Link>
       </div>
@@ -252,7 +252,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
 
@@ -283,7 +283,7 @@ function MainNavigation() {
         <Link className={classes.sick} to="/call-in-sick">
           <img src={HeartInactive} width="70" alt="Sick" />
         </Link>
-        <Link className={classes.leave} to="/ask-for-leave">
+        <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img src={PlaneInactive} width="70" alt="Leave" />
         </Link>
 
@@ -315,7 +315,7 @@ function MainNavigation() {
           <Link className={classes.sick} to="/call-in-sick">
             <img src={HeartInactive} width="70" height="70" alt="Sick" />
           </Link>
-          <Link className={classes.leave} to="/ask-for-leave">
+          <Link className={classes.leave} to="/ask-for-leave" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
             <img src={PlaneInactive} width="70" height="70" alt="Leave" />
           </Link>
 

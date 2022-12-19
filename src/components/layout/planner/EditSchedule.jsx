@@ -26,15 +26,6 @@ function EditSchedule() {
         }
     }, [monthName]);
 
-    setTimeout(function () {
-        const days = document.querySelectorAll('[id^="morning-"], [id^="midday-"]');
-        for (let day of days) {
-            day.removeEventListener("click", leftClick, false);
-            day.addEventListener("click", leftClick, false);
-        }
-    }, 100);
-
-
 
     return [
         <div className="scheduleMain">
@@ -303,7 +294,7 @@ function EditSchedule() {
                 <p className="dateNum" style={textStyle}>
                     {date.getDate()}
                 </p>
-                <div onContextMenu={rightClick}
+                <div onContextMenu={rightClick} onClick={leftClick}
                     id={`morning-${index}`}
                     data-status={morning}
                     data-id={id1}
@@ -312,7 +303,7 @@ function EditSchedule() {
                 >
                     <span class="plannerTooltip">{inOfficeT} {inOfficeT != 1 ? 'people' : 'person'}  in office</span>
                 </div>
-                <div onContextMenu={rightClick}
+                <div onContextMenu={rightClick} onClick={leftClick}
                     id={`midday-${index}`}
                     data-status={noon}
                     data-id={id2}

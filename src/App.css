@@ -17,6 +17,10 @@
     --clrLeave: #F0E580;
     --clrAway: #D9D9D9;
 
+
+    --clrUnclickableLeave: #f2ecbf;
+    --clrUnclickableGray: #edeaea;
+
   /* FONTS */
   --medium-font-size: 19px;
   --font: Arial, Helvetica, sans-serif;
