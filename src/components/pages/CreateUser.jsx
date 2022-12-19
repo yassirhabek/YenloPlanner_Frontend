@@ -57,8 +57,8 @@ function CreateUserPage(){
             <div className={classes.header}>
                 <TextField id="name" label="Naam" variant="outlined" className={classes.name}/>
                 <TextField id="email" label="Email" variant="outlined" className={classes.email}/>
-                <TextField id="password" label="Password" variant="outlined" className={classes.email}/>
-                <TextField id="confirmPassword" label="Confirm Password" variant="outlined" className={classes.email}/>
+                <TextField id="password" label="Password" variant="outlined" className={classes.password}/>
+                <TextField id="confirmPassword" label="Confirm Password" variant="outlined" className={classes.cpassword}/>
                 
                 <Button variant="contained" className={classes.submit} onClick={createUser}>Submit</Button>
             </div>
