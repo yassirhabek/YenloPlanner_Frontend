@@ -19,7 +19,7 @@ function App() {
   const userCtx = useContext(UserContext);
 
   const PrivateRoute = ({ children }) => {
-    return userCtx.isLoggedIn ? children : <Navigate to="/login" />;
+    return userCtx.isLoggedIn ? children : <Navigate to="/" />;
   };
 
   const PrivateRouteLoggedIn = ({ children }) => {
@@ -123,7 +123,7 @@ function App() {
           }
         />
         <Route
-          path="/login"
+          path="/"
           element={
             <PrivateRouteLoggedIn>
               {" "}

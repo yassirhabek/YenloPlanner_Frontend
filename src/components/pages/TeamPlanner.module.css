@@ -35,13 +35,15 @@
 
 .teamname{
   position: absolute;
-  width: calc(100%);
+  width: 10%;
   top: 25%;
-  left: 13.9%;
+  left: 12.9%;
   z-index: -1;
 }
 
 .teamname p{
   font-family: "Inter";
   font-style: normal;
+  font-size: 100%;
+  text-align: center;
 }

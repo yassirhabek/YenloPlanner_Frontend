@@ -31,7 +31,6 @@ export function UserContextProvider(props) {
     if (response.ok) {
       document.cookie = "token=" + result.accessToken;
       getUserFromToken(result.accessToken);
-      console.log(result.accessToken);
       setIsLoggedIn(true);
     } else {
       alert("Login failed");
@@ -57,10 +56,8 @@ export function UserContextProvider(props) {
     if (response.ok) {
         setUser(User => ({...User, ...userData}));
         setIsLoggedIn(true);
-        setLoading(false);
-    } else {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const contextValue = {
