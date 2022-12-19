@@ -41,7 +41,7 @@ function Schedule() {
     Edit attendance
   </button>);
   let info = "";
-  if (2 === 1) {
+  if (state.user.id !== userCtx.user.id) {
     editBtn = "";
     info = <div className="UserInfo">Now viewing <b>{state.user.name}'s</b> attendance</div>;
   }
@@ -312,7 +312,7 @@ function Schedule() {
       .split("T")[0]
       .replaceAll("-", "/");
 
-    let url = `http://localhost:8080/availability/between?user_id=${userCtx.user.id}&start_date=${from}&end_date=${to}`;
+    let url = `http://localhost:8080/availability/between?user_id=${state.user.id}&start_date=${from}&end_date=${to}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -347,7 +347,7 @@ function Schedule() {
       .toISOString()
       .split("T")[0]
       .replaceAll("-", "/");
-      fetch(`http://localhost:8080/availability/office?user_id=${userCtx.user.id}&start_date=${from}&end_date=${to2}`)
+      fetch(`http://localhost:8080/availability/office?user_id=${state.user.id}&start_date=${from}&end_date=${to2}`)
       .then((response) => response.json())
       .then((data2) => {
         let inOffice = [];

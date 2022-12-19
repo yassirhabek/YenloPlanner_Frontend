@@ -25,7 +25,7 @@ function MainNavigation() {
   if (location.pathname === "/" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner">
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}>
           <img
             src={CalendarInactive}
             width="76"
@@ -57,7 +57,7 @@ function MainNavigation() {
   } else if (location.pathname === "/") {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img
             src={CalendarInactive}
             width="76"
@@ -83,7 +83,7 @@ function MainNavigation() {
   ) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarActive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -113,7 +113,7 @@ function MainNavigation() {
   ) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarActive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -130,7 +130,7 @@ function MainNavigation() {
   } else if (location.pathname === "/team-planner" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -157,7 +157,7 @@ function MainNavigation() {
   } else if (location.pathname === "/team-planner") {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -174,7 +174,7 @@ function MainNavigation() {
   } else if (location.pathname === "/call-in-sick" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -201,7 +201,7 @@ function MainNavigation() {
   } else if (location.pathname === "/call-in-sick") {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -218,7 +218,7 @@ function MainNavigation() {
   } else if (location.pathname === "/ask-for-leave" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -245,7 +245,7 @@ function MainNavigation() {
   } else if (location.pathname === "/ask-for-leave") {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -262,7 +262,7 @@ function MainNavigation() {
   } else if (location.pathname === "/team-manage" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -289,7 +289,7 @@ function MainNavigation() {
   } else if (location.pathname === "/single-manage" && admin === true) {
     Navbar = (
       <div className={classes.navbackground}>
-        <Link className={classes.calender} to="/user-planner" >
+        <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
           <img src={CalendarInactive} width="76" height="76" alt="Calender" />
         </Link>
         <Link className={classes.team} to="/team-planner">
@@ -317,7 +317,7 @@ function MainNavigation() {
     Navbar = (
       <div className="MainNavigation">
         <div className={classes.navbackground}>
-          <Link className={classes.calender} to="/user-planner" >
+          <Link className={classes.calender} to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}} >
             <img src={CalendarInactive} width="76" height="76" alt="Calender" />
           </Link>
           <Link className={classes.team} to="/team-planner">
