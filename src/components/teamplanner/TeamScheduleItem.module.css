@@ -1,7 +1,7 @@
 .nameblock {
   position: absolute;
   width: 10.8%;
-  height: 20%;
+  height: 10%;
   left: 12.9%;
   z-index: -1;
   background: #f7f6f6;
@@ -19,7 +19,7 @@
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
-    font-size: 120%;
+    font-size: 80%;
     line-height: 100%;
     text-align: center;
   
@@ -31,7 +31,7 @@
 
   position: absolute;
   width: 5.4%;
-  height: 20%;
+  height: 10%;
   left: 23.6%;
   z-index: -1;
 
@@ -46,7 +46,7 @@
 
   position: absolute;
   width: 5.4%;
-  height: 20%;
+  height: 10%;
   left: 29%;
   z-index: -1;
 
@@ -61,7 +61,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 34.4%;
     z-index: -1;
   
@@ -76,7 +76,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 39.8%;
     z-index: -1;
   
@@ -91,7 +91,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 45.2%;
     z-index: -1;
   
@@ -106,7 +106,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 50.6%;
     z-index: -1;
   
@@ -121,7 +121,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 56%;
     z-index: -1;
   
@@ -136,7 +136,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 61.4%;
     z-index: -1;
   
@@ -151,7 +151,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 66.8%;
     z-index: -1;
   
@@ -166,7 +166,7 @@
   
     position: absolute;
     width: 5.4%;
-    height: 20%;
+    height: 10%;
     left: 72.2%;
     z-index: -1;
   

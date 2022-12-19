@@ -26,9 +26,13 @@ function App() {
     return userCtx.isLoggedIn ? <Navigate to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}/> : children;
   };
 
+  const getCookieValue = (name) => (
+    document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+  )
+
 
   useEffect(() => {
-    let token = document.cookie;
+    let token = getCookieValue("token");
     userCtx.getUser(token.replace("token=", ""));
   }, []);
 
