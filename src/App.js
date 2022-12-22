@@ -18,18 +18,34 @@ import "./App.css";
 function App() {
   const userCtx = useContext(UserContext);
 
+  const PrivateAdminLoggedInRoute = ({ children }) => {
+    return userCtx.user.isManager && userCtx.isLoggedIn ? (
+      children
+    ) : (
+      <Navigate
+        to="/user-planner"
+        state={{ user: { id: userCtx.user.id, name: userCtx.user.name } }}
+      />
+    );
+  };
+
   const PrivateRoute = ({ children }) => {
     return userCtx.isLoggedIn ? children : <Navigate to="/" />;
   };
 
   const PrivateRouteLoggedIn = ({ children }) => {
-    return userCtx.isLoggedIn ? <Navigate to="/user-planner" state={{user: {id: userCtx.user.id, name: userCtx.user.name}}}/> : children;
+    return userCtx.isLoggedIn ? (
+      <Navigate
+        to="/user-planner"
+        state={{ user: { id: userCtx.user.id, name: userCtx.user.name } }}
+      />
+    ) : (
+      children
+    );
   };
 
-  const getCookieValue = (name) => (
-    document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
-  )
-
+  const getCookieValue = (name) =>
+    document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
 
   useEffect(() => {
     let token = getCookieValue("token");
@@ -98,28 +114,28 @@ function App() {
         <Route
           path="/single-manage"
           element={
-            <PrivateRoute>
+            <PrivateAdminLoggedInRoute>
               {" "}
               <SingleManagmentPage />{" "}
-            </PrivateRoute>
+            </PrivateAdminLoggedInRoute>
           }
         />
         <Route
           path="/team-manage"
           element={
-            <PrivateRoute>
+            <PrivateAdminLoggedInRoute>
               {" "}
               <TeamManagmentPage />{" "}
-            </PrivateRoute>
+            </PrivateAdminLoggedInRoute>
           }
         />
         <Route
           path="/create-user"
           element={
-            <PrivateRoute>
+            <PrivateAdminLoggedInRoute>
               {" "}
               <CreateUserPage />{" "}
-            </PrivateRoute>
+            </PrivateAdminLoggedInRoute>
           }
         />
         <Route
